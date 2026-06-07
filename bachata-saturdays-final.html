@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Bachata Saturdays RSVP</title>
+    <!-- Tailwind CSS Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Premium Unified Geometric Font (Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#1A0933',
+                            magenta: '#360F54',
+                            deepPurple: '#561571',
+                            coral: '#FF6E40',
+                            cream: '#FAF5EF',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Force smooth, unified typography across every single element */
+        * {
+            font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Dynamic iOS safe zone helper padding */
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        body {
+            background-color: #FAF5EF;
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        /* Custom styled scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF5EF;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF6E40;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-brand-cream text-stone-800 font-sans pb-safe">
+
+    <!-- GLOBAL TOAST NOTIFIER -->
+    <div id="toast-banner" class="fixed top-5 right-5 z-50 hidden flex items-center gap-3 px-5 py-4 rounded-xl shadow-2xl backdrop-blur-md transition-all duration-300 border bg-white max-w-sm">
+        <div id="toast-icon-success" class="bg-emerald-500 text-white p-1.5 rounded-full hidden">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+        </div>
+        <div id="toast-icon-error" class="bg-rose-500 text-white p-1.5 rounded-full hidden">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+        </div>
+        <div>
+            <p id="toast-title" class="text-sm font-semibold text-stone-900"></p>
+            <p id="toast-desc" class="text-xs text-stone-600 mt-0.5"></p>
+        </div>
+        <button onclick="hideToast()" class="ml-auto text-stone-400 hover:text-stone-700">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+    </div>
+
+    <!-- MAIN HOMEPAGE WRAPPER VIEW CONTAINER -->
+    <div id="homepage-view" class="block">
+
+        <!-- HEADER HERO POSTER COMPONENT (Optimized spacing for one-scroll mobile use) -->
+        <header class="relative overflow-hidden bg-gradient-to-b from-[#1A0933] via-[#360F54] to-[#561571] text-white py-6 sm:py-10 px-4 shadow-xl">
+            <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <div class="absolute -top-10 -left-10 w-64 h-64 rounded-full bg-brand-coral filter blur-3xl"></div>
+                <div class="absolute top-1/2 right-10 w-80 h-80 rounded-full bg-pink-500 filter blur-3xl"></div>
+            </div>
+
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-6 sm:gap-8 relative z-10">
+                
+                <!-- Headline details -->
+                <div class="flex-1 text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-coral text-white rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4">
+                        ✨ Your 6-Week Dance Journey
+                    </div>
+                    
+                    <h1 class="text-[22px] sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-brand-cream whitespace-nowrap">
+                        Bachata <span class="text-brand-coral">Saturdays</span>
+                    </h1>
+
+                    <p class="mt-2 text-base sm:text-lg text-[#F3E8FF] font-medium tracking-wide">
+                        LEARN. CONNECT. DANCE.
+                    </p>
+                    <p class="text-stone-300 text-xs italic mt-1">
+                        Every Saturday. Just You. The Music. And Bachata.
+                    </p>
+
+                    <div class="mt-4 sm:mt-6 flex flex-wrap justify-center md:justify-start gap-2 text-[10px] sm:text-xs font-semibold">
+                        <div class="flex items-center gap-1.5 bg-white/10 px-2.5 py-1.5 rounded-lg border border-white/15">
+                            📍 Atmos Studio, Koramangala
+                        </div>
+                        <div class="flex items-center gap-1.5 bg-white/10 px-2.5 py-1.5 rounded-lg border border-white/15">
+                            🗓️ 6-Week Saturdays Series
+                        </div>
+                        <div class="flex items-center gap-1.5 bg-white/10 px-2.5 py-1.5 rounded-lg border border-white/15">
+                            👑 Instructors: Sarishtha & Bristi
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compact Community Caller Card -->
+                <div class="w-full md:w-80 bg-white/5 backdrop-blur-md rounded-2xl p-5 border border-white/10 text-center shadow-lg">
+                    <div class="text-brand-coral font-bold text-xs uppercase tracking-wider mb-1">
+                        💬 Join The Community
+                    </div>
+                    <div class="text-2xl font-mono font-black text-white tracking-tight my-2">
+                        63608-43832
+                    </div>
+                    <p class="text-[10px] text-stone-300 leading-relaxed mb-4">
+                        Have questions about the sessions, batch levels, or schedules? Reach out to our team instantly!
+                    </p>
+                    
+                    <div class="flex gap-2 w-full font-sans">
+                        <a href="https://wa.me/916360843832?text=Hi!%20I'm%20interested%20in%20Bachata%20Saturdays.%20Please%20help%20me%20book%20my%20spot!" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-3 rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow-md active:scale-95">
+                            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.456L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.966C16.39 1.974 13.916.95 11.29.95c-5.439 0-9.865 4.371-9.87 9.8.001 2.01.531 3.97 1.543 5.681l-.997 3.642 3.734-.969z"/></svg>
+                            WhatsApp
+                        </a>
+                        <button onclick="copyToClipboard('6360843832')" class="flex-1 bg-white/10 hover:bg-white/20 text-white font-bold py-2.5 px-3 rounded-lg text-xs transition border border-white/25 flex items-center justify-center gap-1.5 active:scale-95">
+                            📋 Copy Number
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- STICKY TAB ENGINE (Unified single-line viewport support) -->
+        <div class="sticky top-0 z-30 bg-[#FAF5EF]/95 backdrop-blur shadow-sm border-b border-stone-200/80">
+            <div class="max-w-6xl mx-auto px-2 sm:px-4 py-3">
+                <!-- Premium Tactile Segmented Control Capsule Container -->
+                <div class="bg-stone-200/50 p-1 rounded-xl flex w-full gap-1 border border-stone-200/80">
+                    <button onclick="switchTab('register')" id="tab-btn-register" class="flex-1 text-center py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 bg-white text-brand-purple border border-stone-200/80 shadow-[0_3px_8px_rgba(0,0,0,0.06),inset_0_-2px_0_rgba(0,0,0,0.05)] active:scale-[0.98]">
+                        🎯 Reserve Spot
+                    </button>
+                    <button onclick="switchTab('details')" id="tab-btn-details" class="flex-1 text-center py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-600 hover:text-stone-900 hover:bg-stone-200/20 active:scale-[0.98]">
+                        ℹ️ Course Details
+                    </button>
+                    <button onclick="switchTab('faqs')" id="tab-btn-faqs" class="flex-1 text-center py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-600 hover:text-stone-900 hover:bg-stone-200/20 active:scale-[0.98]">
+                        🙋‍♂️ FAQs
+                    </button>
+                    <button onclick="switchTab('admin')" id="tab-btn-admin" class="flex-1 text-center py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-600 hover:text-stone-900 hover:bg-stone-200/20 active:scale-[0.98]">
+                        🔒 Organizer Desk
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN VIEWPORTS -->
+        <main class="max-w-6xl mx-auto px-4 py-6 sm:py-8">
+
+            <!-- TAB 1: FORM CHECKOUT (Squeezed & highly isolated for speed) -->
+            <div id="tab-panel-register" class="tab-panel block max-w-2xl mx-auto">
+                
+                <div class="bg-white rounded-2xl shadow-xl border border-stone-200/80 overflow-hidden">
+                    <div class="bg-gradient-to-r from-brand-deepPurple to-brand-purple text-white p-5 sm:p-6">
+                        <h2 class="text-xl sm:text-2xl font-serif font-extrabold tracking-tight">Reserve Your Spot</h2>
+                        <p class="text-[11px] sm:text-xs text-purple-200 mt-1 leading-relaxed">
+                            Complete your registration details below, process the transaction securely to the masked UPI details, and upload your payment proof to get verified.
+                        </p>
+                    </div>
+
+                    <!-- OFFER NOTICE BANNER -->
+                    <div class="bg-amber-50 border-b border-amber-200/60 p-4 flex items-start gap-2.5">
+                        <div class="text-amber-600 mt-0.5 animate-pulse">🔥</div>
+                        <div>
+                            <h4 class="text-xs font-bold text-amber-900 uppercase tracking-wider">Secret Early Bird Offer Available!</h4>
+                            <p class="text-[11px] text-amber-700 mt-0.5 leading-relaxed font-medium">
+                                Have a promo code? Ask our instructors <a href="https://www.instagram.com/sarishthamajumdar/" target="_blank" class="font-bold underline text-brand-coral">Sarishtha</a> or <a href="https://www.instagram.com/bristi_mazumdar/" target="_blank" class="font-bold underline text-brand-coral">Bristi</a> on Instagram for an early-bird promo code to unlock exclusive discounts!
+                            </p>
+                        </div>
+                    </div>
+
+                    <form id="rsvp-form" onsubmit="handleRegistrationSubmit(event)" class="p-5 sm:p-6 space-y-6">
+                        
+                        <!-- CHRONOLOGICAL PROMO CONTAINER -->
+                        <div class="bg-stone-50 border border-stone-200 p-4 rounded-xl space-y-2.5">
+                            <label class="block text-xs font-black uppercase text-stone-700 tracking-wider">
+                                Apply Promotional Access Code
+                            </label>
+                            <div class="flex gap-2">
+                                <input 
+                                    type="text" 
+                                    id="promo-input" 
+                                    placeholder="ENTER CODE"
+                                    class="flex-1 px-3 py-2 bg-white border border-stone-300 rounded-lg text-sm text-stone-800 uppercase tracking-widest font-black focus:outline-none focus:ring-2 focus:ring-brand-coral"
+                                />
+                                <button 
+                                    type="button" 
+                                    id="promo-apply-btn"
+                                    onclick="applyPromoCode()"
+                                    class="bg-stone-950 hover:bg-stone-800 text-white font-bold text-xs px-4 py-2 rounded-lg transition active:scale-95 shrink-0"
+                                >
+                                    Apply
+                                </button>
+                                <button 
+                                    type="button" 
+                                    id="promo-remove-btn"
+                                    onclick="removePromoCode()"
+                                    class="hidden bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs px-3 py-2 rounded-lg transition shrink-0"
+                                >
+                                    ✕ Remove
+                                </button>
+                            </div>
+                            <p id="promo-message" class="text-[10px] font-bold hidden"></p>
+                        </div>
+
+                        <!-- 1. SELECT LEVEL -->
+                        <div>
+                            <label class="block text-xs sm:text-sm font-bold text-stone-800 mb-2.5">
+                                1. Select Your Bachata Level <span class="text-rose-500">*</span>
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                                <!-- L1 Card -->
+                                <div onclick="selectLevel('L1')" id="level-card-L1" class="cursor-pointer border-2 rounded-xl p-3.5 transition-all duration-200 border-brand-coral bg-brand-cream">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-bold text-stone-950 text-xs sm:text-sm">L1 Beginner</span>
+                                        <input type="radio" name="level-radio" id="level-radio-L1" checked class="text-brand-coral focus:ring-brand-coral" />
+                                    </div>
+                                    <p class="text-[11px] font-bold text-purple-700 mt-1">1:30 PM - 3:00 PM</p>
+                                    <p class="text-[10px] text-stone-500 mt-1 leading-relaxed">Absolute Beginners. No partner needed.</p>
+                                </div>
+                                <!-- L2 Card -->
+                                <div onclick="selectLevel('L2')" id="level-card-L2" class="cursor-pointer border-2 rounded-xl p-3.5 transition-all duration-200 border-stone-200 hover:border-stone-300 bg-white">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-bold text-stone-950 text-xs sm:text-sm">L2 Improver</span>
+                                        <input type="radio" name="level-radio" id="level-radio-L2" class="text-brand-coral focus:ring-brand-coral" />
+                                    </div>
+                                    <p class="text-[11px] font-bold text-purple-700 mt-1">1:00 PM - 2:30 PM</p>
+                                    <p class="text-[10px] text-stone-500 mt-1 leading-relaxed">Build & Grow. Requires 3+ months experience.</p>
+                                </div>
+                                <!-- L3 Card -->
+                                <div onclick="selectLevel('L3')" id="level-card-L3" class="cursor-pointer border-2 rounded-xl p-3.5 transition-all duration-200 border-stone-200 hover:border-stone-300 bg-white">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-bold text-stone-950 text-xs sm:text-sm">L3 Intermediate</span>
+                                        <input type="radio" name="level-radio" id="level-radio-L3" class="text-brand-coral focus:ring-brand-coral" />
+                                    </div>
+                                    <p class="text-[11px] font-bold text-[#561571] mt-1">3:00 PM - 4:30 PM</p>
+                                    <p class="text-[10px] text-stone-500 mt-1 leading-relaxed">Level Up. Requires 6+ months experience.</p>
+                                </div>
+                                <!-- L4 Card (Performance) -->
+                                <div onclick="selectLevel('L4')" id="level-card-L4" class="cursor-pointer border-2 rounded-xl p-3.5 transition-all duration-200 border-stone-200 hover:border-stone-300 bg-white">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-bold text-stone-950 text-xs sm:text-sm">L4 Performance</span>
+                                        <input type="radio" name="level-radio" id="level-radio-L4" class="text-brand-coral focus:ring-brand-coral" />
+                                    </div>
+                                    <p class="text-[11px] font-bold text-orange-600 mt-1">8 classes (4 weeks)</p>
+                                    <p class="text-[10px] text-stone-500 mt-1 leading-relaxed">Advanced training batch. Audition basis.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. SELECT PLAN -->
+                        <div>
+                            <label class="block text-xs sm:text-sm font-bold text-stone-800 mb-2.5">
+                                2. Choose Pricing Tier <span class="text-rose-500">*</span>
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <!-- Individual Card -->
+                                <div onclick="selectPlan('individual-regular')" id="plan-card-individual-regular" class="cursor-pointer border-2 rounded-xl p-4 transition-all duration-200 border-brand-coral bg-brand-cream/40">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="font-bold text-stone-950 text-xs sm:text-sm block">Individual (Regular)</span>
+                                            <span class="text-[10px] text-stone-500 font-medium mt-0.5 block">Standard full 6-week access</span>
+                                        </div>
+                                        <input type="radio" name="plan-radio" id="plan-radio-individual-regular" checked class="text-brand-coral focus:ring-brand-coral" />
+                                    </div>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <span id="price-val-individual" class="text-xl font-bold text-brand-purple font-serif">₹3500</span>
+                                        <span id="strike-val-individual" class="text-xs text-stone-400 line-through hidden">₹3500</span>
+                                    </div>
+                                </div>
+
+                                <!-- Couple Card -->
+                                <div onclick="selectPlan('couple-regular')" id="plan-card-couple-regular" class="cursor-pointer border-2 rounded-xl p-4 transition-all duration-200 border-stone-200 hover:border-stone-300 bg-white">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="font-bold text-stone-950 text-xs sm:text-sm block">Couple (Regular)</span>
+                                            <span class="text-[10px] text-stone-500 font-medium mt-0.5 block">Standard full access for 2 people</span>
+                                        </div>
+                                        <input type="radio" name="plan-radio" id="plan-radio-couple-regular" class="text-brand-coral focus:ring-brand-coral" />
+                                    </div>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <span id="price-val-couple" class="text-xl font-bold text-brand-purple font-serif">₹6500</span>
+                                        <span id="strike-val-couple" class="text-xs text-stone-400 line-through hidden">₹6500</span>
+                                    </div>
+                                </div>
+
+                                <!-- TRIAL ACCESS SPANNING SINGLE ROW BELOW -->
+                                <div onclick="selectPlan('individual-trial')" id="plan-card-individual-trial" class="col-span-1 md:col-span-2 cursor-pointer border-2 rounded-xl p-4 transition-all duration-200 border-stone-200 hover:border-stone-300 bg-white">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <span class="font-bold text-stone-950 text-xs sm:text-sm block">Trial / Drop-in Session</span>
+                                            <span class="text-[10px] text-stone-500 font-medium mt-0.5 block">One single Saturday trial session access</span>
+                                        </div>
+                                        <input type="radio" name="plan-radio" id="plan-radio-individual-trial" class="text-brand-coral focus:ring-brand-coral" />
+                                    </div>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <span id="price-val-trial" class="text-xl font-bold text-brand-purple font-serif">₹700</span>
+                                        <span id="strike-val-trial" class="text-xs text-stone-400 line-through hidden">₹700</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. CONTACT CREDENTIALS -->
+                        <div class="space-y-4">
+                            <h3 class="text-xs sm:text-sm font-bold text-stone-800 pb-2 border-b border-stone-100 uppercase tracking-wider">
+                                3. Registrant Details
+                            </h3>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Full Name -->
+                                <div>
+                                    <label class="block text-[10px] font-black uppercase text-stone-700 tracking-wider mb-1">
+                                        Full Name <span class="text-rose-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="field-fullName"
+                                        placeholder="Rahul Sharma"
+                                        class="w-full px-4 py-2.5 rounded-lg border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-coral"
+                                    />
+                                </div>
+
+                                <!-- WhatsApp Phone -->
+                                <div>
+                                    <label class="block text-[10px] font-black uppercase text-stone-700 tracking-wider mb-1">
+                                        WhatsApp Number <span class="text-rose-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="tel" 
+                                        id="field-phone"
+                                        placeholder="9876543210"
+                                        oninput="triggerDuplicatePhoneWarning()"
+                                        class="w-full px-4 py-2.5 rounded-lg border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-coral"
+                                    />
+                                    <p id="warning-duplicate-phone" class="text-[10px] font-bold text-amber-600 mt-1 hidden">
+                                        ⚠️ Note: This phone number is already registered. If you are re-registering for a new level, proceed safely.
+                                    </p>
+                                </div>
+
+                                <!-- Gender Selector Mandatory Toggle -->
+                                <div class="md:col-span-2">
+                                    <label class="block text-[10px] font-black uppercase text-stone-700 tracking-wider mb-1.5">
+                                        Dance Role / Gender <span class="text-rose-500">*</span>
+                                    </label>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <button 
+                                            type="button" 
+                                            id="gender-lead"
+                                            onclick="selectGender('Lead')"
+                                            class="py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-brand-cream border-brand-coral text-stone-900"
+                                        >
+                                            🕺 Lead (Male)
+                                        </button>
+                                        <button 
+                                            type="button" 
+                                            id="gender-follow"
+                                            onclick="selectGender('Follow')"
+                                            class="py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-white border-stone-200 text-stone-600 hover:border-stone-300"
+                                        >
+                                            💃 Follow (Female)
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Instagram Handle -->
+                                <div class="md:col-span-2">
+                                    <label class="block text-[10px] font-black uppercase text-stone-700 tracking-wider mb-1">
+                                        Instagram Handle <span class="text-stone-400 font-normal">(Optional)</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="field-instagram"
+                                        placeholder="e.g. @rahul_sharma"
+                                        class="w-full px-4 py-2.5 rounded-lg border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-coral"
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- PARTNER FIELDS (SHOWN FOR COUPLE PLAN ONLY) -->
+                            <div id="partner-info-box" class="hidden p-4 bg-brand-cream/50 rounded-xl border border-amber-100 space-y-4 animate-fadeIn">
+                                <div class="flex items-center gap-2 mb-1">
+                                    👥 <h4 class="font-bold text-stone-900 text-xs uppercase tracking-wide">Partner Details</h4>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Partner Name -->
+                                    <div>
+                                        <label class="block text-[10px] font-black uppercase text-stone-700 tracking-wider mb-1">
+                                            Partner Full Name <span class="text-rose-500">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="field-partnerName"
+                                            placeholder="Priya Patel"
+                                            class="w-full px-4 py-2.5 rounded-lg border border-stone-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-coral"
+                                        />
+                                    </div>
+
+                                    <!-- Partner Phone -->
+                                    <div>
+                                        <label class="block text-[10px] font-black uppercase text-stone-700 tracking-wider mb-1">
+                                            Partner WhatsApp Number <span class="text-stone-400 font-normal">(Optional)</span>
+                                        </label>
+                                        <input 
+                                            type="tel" 
+                                            id="field-partnerPhone"
+                                            placeholder="9123456789"
+                                            oninput="triggerDuplicatePhoneWarning()"
+                                            class="w-full px-4 py-2.5 rounded-lg border border-stone-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-coral"
+                                        />
+                                        <p id="warning-duplicate-partner-phone" class="text-[10px] font-bold text-amber-600 mt-1 hidden">
+                                            ⚠️ Note: This phone number is already registered in the system.
+                                        </p>
+                                    </div>
+
+                                    <!-- Partner Role / Gender Selector Toggle -->
+                                    <div class="md:col-span-2">
+                                        <label class="block text-[10px] font-black uppercase text-stone-700 tracking-wider mb-1.5">
+                                            Partner Role / Gender <span class="text-rose-500">*</span>
+                                        </label>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <button 
+                                                type="button" 
+                                                id="partner-gender-lead"
+                                                onclick="selectPartnerGender('Lead')"
+                                                class="py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-white border-stone-200 text-stone-600 hover:border-stone-300"
+                                            >
+                                                🕺 Lead (Male)
+                                            </button>
+                                            <button 
+                                                type="button" 
+                                                id="partner-gender-follow"
+                                                onclick="selectPartnerGender('Follow')"
+                                                class="py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-brand-cream border-brand-coral text-stone-900"
+                                            >
+                                                💃 Follow (Female)
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Partner Instagram -->
+                                    <div class="md:col-span-2">
+                                        <label class="block text-[10px] font-black uppercase text-stone-700 tracking-wider mb-1">
+                                            Partner Instagram Handle <span class="text-stone-400 font-normal">(Optional)</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="field-partnerInstagram"
+                                            placeholder="e.g. @priya_patel"
+                                            class="w-full px-4 py-2.5 rounded-lg border border-stone-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-coral"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. PRE-PAYMENT PORTAL GATE -->
+                        <div class="bg-gradient-to-r from-purple-900 to-purple-950 text-white rounded-2xl p-5 sm:p-6 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-serif font-bold text-base sm:text-lg text-white flex items-center gap-2">
+                                    📊 Billing Invoice Summary
+                                </h3>
+                                <span class="text-[10px] bg-white/25 px-2 py-0.5 rounded font-bold uppercase tracking-wider">Safe Transfer</span>
+                            </div>
+
+                            <div class="flex justify-between items-center border-b border-white/10 pb-3 text-xs sm:text-sm">
+                                <span class="text-stone-300">Selected Plan:</span>
+                                <span id="bill-plan-title" class="font-bold text-brand-coral">Individual (Regular)</span>
+                            </div>
+
+                            <div class="flex justify-between items-center border-b border-white/10 pb-3 text-xs sm:text-sm">
+                                <span class="text-stone-300">Total Due Amount:</span>
+                                <span id="bill-amount-label" class="text-lg sm:text-2xl font-bold text-white">₹3500</span>
+                            </div>
+
+                            <!-- UPI instructions -->
+                            <div class="text-[11px] sm:text-xs text-stone-300 leading-relaxed space-y-2">
+                                <p class="font-medium">
+                                    Please complete the direct Indian UPI payment of <strong id="bill-instruction-price" class="text-brand-coral font-bold">₹3500</strong> using GPay, PhonePe, Paytm, or BHIM:
+                                </p>
+
+                                <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-2 text-stone-100">
+                                    <!-- UPI ID -->
+                                    <div class="bg-white/10 p-3 rounded-lg border border-white/10 flex justify-between items-center">
+                                        <div>
+                                            <p class="text-[9px] uppercase tracking-wide text-stone-300 font-bold">UPI ID</p>
+                                            <p class="text-xs font-mono font-bold mt-0.5 select-all">sarishtha***@okhdfcbank</p>
+                                        </div>
+                                        <button type="button" id="copy-upi-btn" class="bg-brand-coral hover:bg-brand-coral/90 text-white px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold transition flex items-center gap-1 shrink-0 shadow-sm active:scale-95">
+                                            ⚡ Copy
+                                        </button>
+                                    </div>
+
+                                    <!-- UPI Number -->
+                                    <div class="bg-white/10 p-3 rounded-lg border border-white/10 flex justify-between items-center">
+                                        <div>
+                                            <p class="text-[9px] uppercase tracking-wide text-stone-300 font-bold">UPI Number</p>
+                                            <p class="text-xs font-mono font-bold mt-0.5 select-all">8377***048</p>
+                                        </div>
+                                        <button type="button" id="copy-phone-btn" class="bg-brand-coral hover:bg-brand-coral/90 text-white px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-bold transition flex items-center gap-1 shrink-0 shadow-sm active:scale-95">
+                                            ⚡ Copy
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SCREENSHOT UPLOAD -->
+                            <div class="pt-2">
+                                <label class="block text-[10px] font-black uppercase text-stone-100 tracking-wider mb-2">
+                                    Upload Transaction Screenshot <span class="text-brand-coral">*</span>
+                                </label>
+                                <div class="flex flex-col sm:flex-row items-center gap-4">
+                                    <label class="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 bg-brand-coral text-white hover:bg-brand-coral/90 font-bold text-xs rounded-lg cursor-pointer transition shadow active:scale-95">
+                                        📁 Select Photo
+                                        <input 
+                                            type="file" 
+                                            id="field-screenshot"
+                                            accept="image/*" 
+                                            onchange="handleImageCompressAndUpload(event)"
+                                            class="hidden" 
+                                        />
+                                    </label>
+
+                                    <div class="flex-1 text-center sm:text-left">
+                                        <span id="screenshot-feedback-label" class="text-xs text-stone-400">
+                                            PNG, JPG formats. Real-time compression active.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Thumbnail Preview -->
+                                <div id="screenshot-preview-container" class="hidden mt-4 relative w-28 h-28 rounded-lg border border-white/15 overflow-hidden bg-black/20 animate-fadeIn">
+                                    <img id="screenshot-preview-img" src="" alt="Proof Preview" class="w-full h-full object-cover" />
+                                    <button type="button" onclick="clearScreenshotUpload()" class="absolute top-1 right-1 bg-rose-600 hover:bg-rose-700 text-white p-1 rounded-full shadow">
+                                        ✕
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- UTR code input -->
+                            <div>
+                                <label class="block text-[10px] font-black uppercase text-stone-300 tracking-wider mb-1">
+                                    UTR / Transaction Reference ID (Optional)
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="field-utr"
+                                    placeholder="12-digit number reference ID"
+                                    class="w-full px-3 py-2 bg-white/5 border border-white/15 rounded-lg text-xs text-white focus:outline-none focus:ring-2 focus:ring-brand-coral"
+                                />
+                            </div>
+
+                        </div>
+
+                        <!-- TERMS AND POLICY -->
+                        <div class="flex items-start gap-2">
+                            <input 
+                                type="checkbox" 
+                                id="field-termsAccepted" 
+                                class="mt-1 text-brand-coral focus:ring-brand-coral rounded"
+                            />
+                            <label for="field-termsAccepted" class="text-[11px] text-stone-600 leading-normal">
+                                I verify that I am registering for the **6-week Bachata Saturdays Course**. I agree that schedule arrangements and course progressions are subject to instructors' terms.
+                            </label>
+                        </div>
+
+                        <!-- ERROR REPORTING CONSOLE PANEL -->
+                        <div id="validation-error-panel" class="hidden bg-rose-50 border border-rose-200 rounded-xl p-4 space-y-2 animate-fadeIn">
+                            <div class="flex items-center gap-2 text-rose-800 font-bold text-xs sm:text-sm">
+                                ⚠️ Let's complete the remaining fields before submitting:
+                            </div>
+                            <ul id="error-bullet-list" class="list-disc list-inside text-xs text-rose-700 space-y-1 ml-1"></ul>
+                        </div>
+
+                        <!-- SUBMIT TRIGGER BUTTON -->
+                        <button
+                            type="submit"
+                            id="submit-form-btn"
+                            class="w-full bg-brand-coral hover:bg-brand-coral/90 text-white py-4 px-6 rounded-xl font-bold text-sm sm:text-base transition shadow-md flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-95"
+                        >
+                            <span>Complete Registration</span>
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: COURSE DETAILS PORTAL -->
+            <div id="tab-panel-details" class="tab-panel hidden space-y-8 max-w-4xl mx-auto">
+                
+                <!-- Dynamic Social Context Banner -->
+                <div class="bg-gradient-to-r from-brand-purple to-brand-magenta text-white p-5 rounded-2xl shadow-lg border border-brand-coral/20">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div>
+                            <h4 class="text-xs uppercase tracking-wider font-extrabold text-brand-coral">Check out our instructors pages for more context</h4>
+                            <p class="text-xs text-stone-300 mt-1 leading-normal">Watch our live dance clips, core class mechanics, performance videos, and past workshops!</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+                            <a href="https://www.instagram.com/sarishthamajumdar/" target="_blank" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F56040] hover:scale-[1.02] text-white rounded-lg text-[10px] sm:text-xs font-bold transition shadow">
+                                📸 @sarishthamajumdar
+                            </a>
+                            <a href="https://www.instagram.com/bristi_mazumdar/" target="_blank" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F56040] hover:scale-[1.02] text-white rounded-lg text-[10px] sm:text-xs font-bold transition shadow">
+                                📸 @bristi_mazumdar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                    
+                    <!-- Schedule Grid Block -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-100 space-y-4">
+                        <h3 class="text-lg font-bold text-stone-900 border-b pb-2 flex items-center gap-2">
+                            ⭐ Class Schedule Structure
+                        </h3>
+                        
+                        <div class="space-y-4 text-xs">
+                            <div class="border-l-4 border-brand-coral bg-brand-cream/40 p-3 rounded-r-xl">
+                                <div class="flex justify-between font-bold text-stone-900">
+                                    <span>Level L1: Beginner</span>
+                                    <span class="text-brand-coral">1:30 PM - 3:00 PM</span>
+                                </div>
+                                <p class="text-[11px] text-stone-600 mt-1 leading-relaxed">
+                                    Ideal for absolute beginners. We teach timing, footwork, fundamental steps, and intro connection styling.
+                                </p>
+                            </div>
+
+                            <div class="border-l-4 border-emerald-500 bg-emerald-50/20 p-3 rounded-r-xl">
+                                <div class="flex justify-between font-bold text-stone-900">
+                                    <span>Level L2: Improver</span>
+                                    <span class="text-emerald-600">1:00 PM - 2:30 PM</span>
+                                </div>
+                                <p class="text-[11px] text-stone-600 mt-1 leading-relaxed">
+                                    Requires 3+ months experience. We study Sensual Bachata body waves, styling, and musicality combinations.
+                                </p>
+                            </div>
+
+                            <div class="border-l-4 border-purple-700 bg-purple-50/20 p-3 rounded-r-xl">
+                                <div class="flex justify-between font-bold text-stone-900">
+                                    <span>Level L3: Intermediate</span>
+                                    <span class="text-purple-700">3:00 PM - 4:30 PM</span>
+                                </div>
+                                <p class="text-[11px] text-stone-600 mt-1 leading-relaxed">
+                                    Requires 6+ months experience. Focuses on advanced connection, performing cues, speed, and styling.
+                                </p>
+                            </div>
+
+                            <div class="border-l-4 border-orange-500 bg-orange-50/20 p-3 rounded-r-xl">
+                                <div class="flex justify-between font-bold text-stone-900">
+                                    <span>Level L4: Performance Batch</span>
+                                    <span class="text-orange-600">8 classes (4 weeks)</span>
+                                </div>
+                                <p class="text-[11px] text-stone-600 mt-1 leading-relaxed">
+                                    Focused on styling mechanics, fast execution speed, and direct performance choreography routines.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Venue Info Block -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-100 space-y-4">
+                        <h3 class="text-lg font-bold text-stone-900 border-b pb-2 flex items-center gap-2">
+                            📍 Venue & Logistics
+                        </h3>
+                        <p class="text-xs text-stone-600 leading-relaxed">
+                            <strong>Atmos Studio (Koramangala):</strong> Conveniently located directly opposite Nexus Mall, Bengaluru.
+                        </p>
+                        <div class="pt-1">
+                            <a href="https://maps.app.goo.gl/w78eoZAoEkX5tFhSA" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-stone-100 hover:bg-stone-200 text-stone-850 rounded-lg text-xs font-bold transition border border-stone-200 shadow-sm active:scale-95">
+                                🗺️ View Location on Google Maps
+                            </a>
+                        </div>
+                        <div class="text-xs font-semibold bg-stone-50 border border-stone-200 p-3 rounded-lg space-y-1 text-stone-700">
+                            <p>🏍️ <strong>Two-Wheelers:</strong> Bike parking is available on-site.</p>
+                            <p>🚗 <strong>Four-Wheelers:</strong> Car parking can be booked easily at Nexus Mall nearby.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- TESTIMONIALS SECTION -->
+                <div class="space-y-6">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-serif font-black text-brand-purple">💖 Wall of Love</h3>
+                        <p class="text-xs text-stone-500 mt-1">Real stories from our vibrant dance community</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Arjun -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-200 overflow-hidden space-y-4 relative group hover:scale-[1.01] transition-all">
+                            <div class="absolute top-3 right-3 bg-brand-coral/10 text-brand-coral text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                Improver
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-gradient-to-tr from-orange-400 to-amber-300 rounded-full flex items-center justify-center text-xl shadow-inner select-none">
+                                    🕺
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900 text-sm">Arjun</h4>
+                                    <div class="flex text-amber-400 text-xs mt-0.5">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-stone-600 leading-relaxed italic">
+                                "As an experienced dancer, I wanted to truly fix my techniques and blend into the community. The vibe here is incredibly welcoming, and the instructors—Sarishtha and Bristi—give dedicated, equal attention to everyone. Getting real-time technique feedback from both of them is a total game-changer.<br/><br/>
+                                I’m a shy person, but the structured learning curve helped me overcome my inhibitions and lead with genuine confidence. I even used to think repeating sequences was a bit slow, until I realized how perfectly it built muscle memory—I confidently pulled off the entire flow smoothly at the socials yesterday!"
+                            </p>
+                        </div>
+
+                        <!-- Soumya -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-200 overflow-hidden space-y-4 relative group hover:scale-[1.01] transition-all">
+                            <div class="absolute top-3 right-3 bg-purple-100 text-purple-700 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                Intermediate
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-gradient-to-tr from-purple-400 to-pink-300 rounded-full flex items-center justify-center text-xl shadow-inner select-none">
+                                    💃
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900 text-sm">Soumya</h4>
+                                    <div class="flex text-amber-400 text-xs mt-0.5">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-stone-600 leading-relaxed italic">
+                                "After a huge break from Bachata, I had lost my confidence and didn't know where to restart. I always admired Sarishtha's dancing, so I reached out. She personally assessed my level on day one and fast-tracked me to the right batch. A year later, I'm happily learning in the Intermediate class!<br/><br/>
+                                What I truly love is how she breaks everything down—body isolations, footwork, and movements—in such a simple way that anyone can learn comfortably. The vibe is equally amazing: supportive, fun, and completely non-judgmental. I feel so fortunate to be growing on this journey here."
+                            </p>
+                        </div>
+
+                        <!-- Anjani -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-200 overflow-hidden space-y-4 relative group hover:scale-[1.01] transition-all">
+                            <div class="absolute top-3 right-3 bg-brand-coral/10 text-brand-coral text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                Improver Batch
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-gradient-to-tr from-teal-400 to-emerald-300 rounded-full flex items-center justify-center text-xl shadow-inner select-none">
+                                    ✨
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900 text-sm">Anjani</h4>
+                                    <div class="flex text-amber-400 text-xs mt-0.5">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-stone-600 leading-relaxed italic">
+                                "Before joining, I was worried I wouldn't be able to keep up with more experienced dancers. But the team instantly made me feel comfortable. What makes the biggest difference is how quickly the instructors identify exactly where you are struggling and give personalized guidance to fix it.<br/><br/>
+                                My biggest breakthrough was learning how to move comfortably in a closed position during Sensual Bachata. I used to struggle with lower-body coordination, but the focus on technique, connection, and body positioning made everything feel natural and fluid. For anyone thinking of joining—especially beginners—the supportive, non-intimidating environment makes it so easy to learn and enjoy the journey."
+                            </p>
+                        </div>
+
+                        <!-- Saritha -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-200 overflow-hidden space-y-4 relative group hover:scale-[1.01] transition-all">
+                            <div class="absolute top-3 right-3 bg-purple-100 text-purple-700 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                Intermediate
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-gradient-to-tr from-[#FF6E40] to-pink-400 rounded-full flex items-center justify-center text-xl shadow-inner select-none">
+                                    👑
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900 text-sm">Saritha</h4>
+                                    <div class="flex text-amber-400 text-xs mt-0.5">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-stone-600 leading-relaxed italic">
+                                "Returning after a long break, I worried about catching up, but the structured practices quickly got my body flowing again. The environment is patient, structured, and highly supportive. My ultimate breakthrough has been in lady styling: Sarishtha’s rock-solid foundation combined with Brishti’s styling and polishing tips finally helped me conquer my struggles with footwork and hand placements!"
+                            </p>
+                        </div>
+
+                        <!-- Vaibhav -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-200 overflow-hidden space-y-4 relative group hover:scale-[1.01] transition-all">
+                            <div class="absolute top-3 right-3 bg-purple-100 text-purple-700 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                Intermediate
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-gradient-to-tr from-orange-400 to-pink-400 rounded-full flex items-center justify-center text-xl shadow-inner select-none">
+                                    🔥
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900 text-sm">Vaibhav</h4>
+                                    <div class="flex text-amber-400 text-xs mt-0.5">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-stone-600 leading-relaxed italic">
+                                <strong>"A super chill vibe where no one gets left behind!" 🔥</strong><br/><br/>
+                                "After a break from dancing, I took a trial class and immediately knew I found the right spot. The environment is incredibly welcoming. Sarishtha and Bristi are so passionate about teaching—they make sure everyone gets individual attention and every doubt is resolved. It feels incredible when you suddenly piece all the combos together and realize just how much you’ve progressed!"
+                            </p>
+                        </div>
+
+                        <!-- Mahender -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-200 overflow-hidden space-y-4 relative group hover:scale-[1.01] transition-all">
+                            <div class="absolute top-3 right-3 bg-purple-100 text-purple-700 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                Intermediate
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-gradient-to-tr from-indigo-400 to-purple-400 rounded-full flex items-center justify-center text-xl shadow-inner select-none">
+                                    🌟
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900 text-sm">Mahender</h4>
+                                    <div class="flex text-amber-400 text-xs mt-0.5">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-stone-600 leading-relaxed italic">
+                                <strong>"From boring routines to executing full performance choreographies!" 🌟</strong><br/><br/>
+                                "I transitioned from Salsa looking for something more fun and engaging. Sarishtha is an incredibly accomplished dancer with an amazing aesthetic sensibility. The atmosphere in class is kind, structured, and wholesome. My absolute favorite moment was when it all clicked and I was able to confidently execute a full performance choreography alongside everyone else. It felt like an incredible accomplishment!"
+                            </p>
+                        </div>
+
+                        <!-- Suman -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-200 overflow-hidden space-y-4 relative group hover:scale-[1.01] transition-all">
+                            <div class="absolute top-3 right-3 bg-purple-100 text-purple-700 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                Intermediate
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-gradient-to-tr from-rose-400 to-pink-300 rounded-full flex items-center justify-center text-xl shadow-inner select-none">
+                                    ✨
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900 text-sm">Suman</h4>
+                                    <div class="flex text-amber-400 text-xs mt-0.5">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-stone-600 leading-relaxed italic">
+                                <strong>"From worrying about judgment to bringing my own flavor to the dance floor!" ✨</strong><br/><br/>
+                                "I used to be nervous about partner dancing and dancing with strangers, but Bachata Saturdays is such a welcoming, non-judgmental space that my comfort zone quickly expanded. The teaching is incredibly patient and structured, focusing heavily on strong fundamentals. I love that they teach different variations and styling options, while constantly encouraging us to express our own unique personality through the dance."
+                            </p>
+                        </div>
+
+                        <!-- Grishma -->
+                        <div class="bg-white rounded-2xl p-6 shadow-md border border-stone-200 overflow-hidden space-y-4 relative group hover:scale-[1.01] transition-all">
+                            <div class="absolute top-3 right-3 bg-purple-100 text-purple-700 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                Intermediate
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-gradient-to-tr from-purple-500 to-indigo-300 rounded-full flex items-center justify-center text-xl shadow-inner select-none">
+                                    🎬
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-900 text-sm">Grishma</h4>
+                                    <div class="flex text-amber-400 text-xs mt-0.5">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-stone-600 leading-relaxed italic">
+                                <strong>"A completely supportive, judgment-free space to grow!" 🎬✨</strong><br/><br/>
+                                "I was afraid of feeling self-conscious about my dancing weaknesses, but Sarishtha makes learning entirely comfortable and non-judgmental. Alongside Brishti, they give incredible personalized attention to anyone who is struggling. For two hours, you just immerse yourself in great technique and leave feeling completely energized. Bonding with the crew and filming our progress videos has been the perfect way to see how much we’ve grown over the past year!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 3: FAQ ACCORDION ENGINE -->
+            <div id="tab-panel-faqs" class="tab-panel hidden max-w-3xl mx-auto space-y-4">
+                <div class="text-center pb-4">
+                    <h3 class="text-2xl font-serif font-extrabold text-brand-purple">🙋‍♂️ Frequently Asked Questions</h3>
+                    <p class="text-xs text-stone-500 mt-1">Schedules, guidelines, parking logistics, and support answered.</p>
+                </div>
+
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-xl border border-stone-200/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion(1)" class="w-full p-4 flex justify-between items-center text-left focus:outline-none bg-stone-50/50 hover:bg-stone-50">
+                        <span class="text-xs font-bold text-stone-900">How many weeks is the progressive course?</span>
+                        <span id="accordion-arrow-1" class="text-stone-400 transition-transform duration-200">▼</span>
+                    </button>
+                    <div id="accordion-body-1" class="hidden p-4 border-t border-stone-100 text-xs text-stone-600 leading-relaxed bg-white">
+                        Our Bachata progressive course runs for 6 weeks. Each week builds sequentially on top of the last, taking you comfortably from foundational timing to confident social dancing.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-xl border border-stone-200/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion(2)" class="w-full p-4 flex justify-between items-center text-left focus:outline-none bg-stone-50/50 hover:bg-stone-50">
+                        <span class="text-xs font-bold text-stone-900">What is the duration of each class?</span>
+                        <span id="accordion-arrow-2" class="text-stone-400 transition-transform duration-200">▼</span>
+                    </button>
+                    <div id="accordion-body-2" class="hidden p-4 border-t border-stone-100 text-xs text-stone-600 leading-relaxed bg-white">
+                        Classes start strictly on time and proceed for 90 minutes of intensive, high-energy, fun learning.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-xl border border-stone-200/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion(3)" class="w-full p-4 flex justify-between items-center text-left focus:outline-none bg-stone-50/50 hover:bg-stone-50">
+                        <span class="text-xs font-bold text-stone-900">What time should I arrive at Atmos Studio?</span>
+                        <span id="accordion-arrow-3" class="text-stone-400 transition-transform duration-200">▼</span>
+                    </button>
+                    <div id="accordion-body-3" class="hidden p-4 border-t border-stone-100 text-xs text-stone-600 leading-relaxed bg-white">
+                        Please aim to arrive 5 to 10 minutes early. This gives you time to complete check-in on the roster and settle down so we can kick off right on time!
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-xl border border-stone-200/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion(4)" class="w-full p-4 flex justify-between items-center text-left focus:outline-none bg-stone-50/50 hover:bg-stone-50">
+                        <span class="text-xs font-bold text-stone-900">What happens if I have to miss a class?</span>
+                        <span id="accordion-arrow-4" class="text-stone-400 transition-transform duration-200">▼</span>
+                    </button>
+                    <div id="accordion-body-4" class="hidden p-4 border-t border-stone-100 text-xs text-stone-600 leading-relaxed bg-white">
+                        Don't stress—life happens! It is completely normal to miss a session. Our team and instructors will ensure you safely catch up on the essential steps and styling movements during the next session.
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="bg-white rounded-xl border border-stone-200/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion(5)" class="w-full p-4 flex justify-between items-center text-left focus:outline-none bg-stone-50/50 hover:bg-stone-50">
+                        <span class="text-xs font-bold text-stone-900">Can I attend a single session or try a class first?</span>
+                        <span id="accordion-arrow-5" class="text-stone-400 transition-transform duration-200">▼</span>
+                    </button>
+                    <div id="accordion-body-5" class="hidden p-4 border-t border-stone-100 text-xs text-stone-600 leading-relaxed bg-white">
+                        Yes! Trials and drop-ins are allowed at ₹700 per session. It’s a great way to experience the energy and vibe before committing to the full progressive course.
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="bg-white rounded-xl border border-stone-200/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion(6)" class="w-full p-4 flex justify-between items-center text-left focus:outline-none bg-stone-50/50 hover:bg-stone-50">
+                        <span class="text-xs font-bold text-stone-900">What footwear and clothing are recommended?</span>
+                        <span id="accordion-arrow-6" class="text-stone-400 transition-transform duration-200">▼</span>
+                    </button>
+                    <div id="accordion-body-6" class="hidden p-4 border-t border-stone-100 text-xs text-stone-600 leading-relaxed bg-white">
+                        Please wear comfortable, breathable clothing that you can move easily in. For footwear, please bring a clean pair of socks or dedicated dance shoes. Outdoor shoes are strictly not allowed on the studio dance floor to keep it clean and safe for spins.
+                    </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="bg-white rounded-xl border border-stone-200/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion(7)" class="w-full p-4 flex justify-between items-center text-left focus:outline-none bg-stone-50/50 hover:bg-stone-50">
+                        <span class="text-xs font-bold text-stone-900">Is parking available at Atmos Studio?</span>
+                        <span id="accordion-arrow-7" class="text-stone-400 transition-transform duration-200">▼</span>
+                    </button>
+                    <div id="accordion-body-7" class="hidden p-4 border-t border-stone-100 text-xs text-stone-600 leading-relaxed bg-white font-sans">
+                        🏍️ <strong>Two-Wheelers:</strong> Bike parking is available directly on-site at the venue.<br/>
+                        🚗 <strong>Four-Wheelers:</strong> Dedicated car parking is not available on-site. If you are driving, you can conveniently and safely park your car at the nearby Nexus Mall.
+                    </div>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="bg-white rounded-xl border border-stone-200/80 overflow-hidden shadow-sm">
+                    <button onclick="toggleAccordion(8)" class="w-full p-4 flex justify-between items-center text-left focus:outline-none bg-stone-50/50 hover:bg-stone-50">
+                        <span class="text-xs font-bold text-stone-900">Do I need to bring a partner? What if I have zero experience?</span>
+                        <span id="accordion-arrow-8" class="text-stone-400 transition-transform duration-200">▼</span>
+                    </button>
+                    <div id="accordion-body-8" class="hidden p-4 border-t border-stone-100 text-xs text-stone-600 leading-relaxed bg-white font-sans">
+                        No partner is required at all! We rotate partners frequently throughout the class, which is the best way to learn and build connection. However, if you bring a partner and prefer to dance exclusively with them, just let our team know.<br/><br/>
+                        If you have zero experience, you are in the right spot! This course is designed with absolute beginners in mind—we break down everything from the very first timing count.
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: SECURE ORGANIZER PORTAL -->
+            <div id="tab-panel-admin" class="tab-panel hidden space-y-6">
+                
+                <!-- PASSWORD SHIELD -->
+                <div id="admin-auth-gate" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl border border-stone-200 p-6">
+                    <div class="text-center space-y-3 mb-6">
+                        <div class="w-12 h-12 bg-stone-100 text-stone-800 flex items-center justify-center rounded-xl mx-auto border border-stone-200">
+                            🔒
+                        </div>
+                        <h3 class="text-xl font-serif font-black text-stone-900">Organizer Desk Login</h3>
+                        <p class="text-xs text-stone-500">
+                            This section is restricted to administrators and organizers of Bachata Saturdays only.
+                        </p>
+                    </div>
+
+                    <form onsubmit="handleAdminAuth(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] font-black uppercase text-stone-700 tracking-wider mb-1">Administrative Password</label>
+                            <input 
+                                type="password" 
+                                id="admin-password-input" 
+                                placeholder="Enter password..."
+                                class="w-full px-4 py-2.5 rounded-lg border border-stone-300 text-sm focus:outline-none focus:ring-2 focus:ring-stone-900"
+                            />
+                            <p id="admin-auth-error" class="text-xs text-rose-500 font-bold mt-1 hidden"></p>
+                        </div>
+
+                        <button type="submit" class="w-full bg-stone-900 hover:bg-stone-800 text-white py-3 rounded-lg text-xs font-bold transition uppercase tracking-widest">
+                            Unlock Administrative Features
+                        </button>
+                    </form>
+                </div>
+
+                <!-- UNLOCKED DASHBOARD -->
+                <div id="admin-dashboard-content" class="hidden space-y-6 animate-fadeIn font-sans">
+                    
+                    <!-- TOOLBAR -->
+                    <div class="bg-white rounded-2xl p-5 shadow border border-stone-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-serif font-extrabold text-stone-900 flex items-center gap-2">
+                                🔑 Admin Dashboard Panel
+                            </h2>
+                            <p class="text-[11px] text-stone-500 mt-0.5">Live database sync logs and attendee roster operations active.</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                            <button onclick="exportToCSV()" class="flex-1 sm:flex-initial px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 active:scale-95 shadow">
+                                📥 Export to CSV (Excel)
+                            </button>
+                            <button onclick="lockAdminSession()" class="flex-1 sm:flex-initial px-4 py-2 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-lg text-xs font-bold transition active:scale-95">
+                                Lock Desk
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ANALYTICS CARDS -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm">
+                            <p class="text-[10px] text-stone-500 uppercase tracking-wider font-bold">Total Enrolled</p>
+                            <p id="stats-total" class="text-3xl font-black text-stone-950 mt-1 font-mono">0</p>
+                            <div class="mt-2 text-[10px] text-stone-400">Target safe limit: 1000 slots</div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm">
+                            <p class="text-[10px] text-stone-500 uppercase tracking-wider font-bold">Verified Revenue</p>
+                            <p id="stats-revenue" class="text-3xl font-black text-emerald-600 mt-1 font-mono">₹0</p>
+                            <div class="mt-2 text-[10px] text-stone-400">Projected: <span id="stats-projected" class="font-bold">₹0</span></div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm">
+                            <p class="text-[10px] text-stone-500 uppercase tracking-wider font-bold">Gender Ratio Balance</p>
+                            <p id="stats-genders" class="text-2xl font-black text-brand-coral mt-1 font-mono">0L / 0F</p>
+                            <div class="mt-2 text-[10px] text-stone-400">Leads vs Follows ratio</div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm">
+                            <p class="text-[10px] text-stone-500 uppercase tracking-wider font-bold">Class Level Split</p>
+                            <div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 font-mono text-xs font-bold text-stone-700">
+                                <div>L1: <span id="stats-l1" class="text-stone-950">0</span></div>
+                                <div>L2: <span id="stats-l2" class="text-stone-950">0</span></div>
+                                <div>L3: <span id="stats-l3" class="text-stone-950">0</span></div>
+                                <div>L4: <span id="stats-l4" class="text-stone-950">0</span></div>
+                                <div>T: <span id="stats-trial" class="text-stone-950">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DATAGRID CONTAINER -->
+                    <div class="bg-white rounded-2xl shadow border border-stone-200 overflow-hidden">
+                        
+                        <div class="p-5 bg-stone-50 border-b border-stone-200 space-y-4">
+                            <div class="flex flex-col md:flex-row justify-between gap-4">
+                                <!-- Search -->
+                                <div class="flex-1 relative">
+                                    <input
+                                        type="text"
+                                        id="admin-search-input"
+                                        placeholder="Search by Name, Phone, Ticket ID, UTR..."
+                                        oninput="renderRosterTable()"
+                                        class="w-full pl-4 pr-4 py-2 rounded-lg border border-stone-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-coral bg-white text-stone-800"
+                                    />
+                                </div>
+
+                                <!-- Filter menus -->
+                                <div class="flex flex-wrap gap-2">
+                                    <select id="filter-level" onchange="renderRosterTable()" class="px-3 py-2 border border-stone-300 rounded-lg text-xs bg-white focus:outline-none">
+                                        <option value="all">All Levels</option>
+                                        <option value="L1">Level L1</option>
+                                        <option value="L2">Level L2</option>
+                                        <option value="L3">Level L3</option>
+                                        <option value="L4">Level L4</option>
+                                    </select>
+
+                                    <select id="filter-status" onchange="renderRosterTable()" class="px-3 py-2 border border-stone-300 rounded-lg text-xs bg-white focus:outline-none">
+                                        <option value="all">All Status</option>
+                                        <option value="Verified">Verified</option>
+                                        <option value="Pending Verification">Pending</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Duplicate entry tracker filter checkbox -->
+                            <div class="flex items-center gap-2">
+                                <input 
+                                    type="checkbox" 
+                                    id="filter-show-dup" 
+                                    onchange="renderRosterTable()"
+                                    class="text-brand-coral focus:ring-brand-coral rounded h-4 w-4"
+                                />
+                                <label for="filter-show-dup" class="text-xs font-bold text-rose-700 flex items-center gap-1.5 cursor-pointer">
+                                    ⚠️ Highlight & Filter Duplicate Registrations
+                                </label>
+                                <span id="stats-dup-bubble" class="text-[10px] bg-rose-100 text-rose-700 font-bold px-2 py-0.5 rounded-full hidden">0 potential duplicates</span>
+                            </div>
+                        </div>
+
+                        <!-- LIVE TABLE -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-stone-600 border-collapse">
+                                <thead>
+                                    <tr class="bg-stone-100 border-b border-stone-200 text-stone-800 font-bold uppercase tracking-wider text-[10px]">
+                                        <th class="px-4 py-3">Registration Info</th>
+                                        <th class="px-4 py-3">Level & Plan</th>
+                                        <th class="px-4 py-3">Receipt / Details</th>
+                                        <th class="px-4 py-3">Verification Action</th>
+                                        <th class="px-4 py-3 text-center">Manage</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="roster-table-body" class="divide-y divide-stone-100 bg-white">
+                                    <!-- Dynamic elements loaded via JSON -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="mt-16 bg-gradient-to-r from-brand-purple to-brand-magenta text-white py-10 px-4 border-t-4 border-brand-coral">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left space-y-1.5">
+                    <h4 class="font-serif font-black text-xl tracking-wide">
+                        Bachata Saturdays
+                    </h4>
+                    <p class="text-xs text-purple-200 max-w-sm">
+                        A bespoke 6-week premium dance journey in Koramangala. Let's make Saturdays magical.
+                    </p>
+                    <p class="text-[10px] text-stone-400 pt-1">
+                        Atmos Studio Opp. Nexus Mall. All rights reserved.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center md:items-end gap-3 text-xs">
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/sarishthamajumdar/" target="_blank" class="hover:text-brand-coral transition text-stone-300 font-bold flex items-center gap-1">
+                            📸 @sarishthamajumdar
+                        </a>
+                        <span class="text-stone-600">|</span>
+                        <a href="https://www.instagram.com/bristi_mazumdar/" target="_blank" class="hover:text-brand-coral transition text-stone-300 font-bold flex items-center gap-1">
+                            📸 @bristi_mazumdar
+                        </a>
+                    </div>
+                    <div class="text-stone-400 text-[10px]">
+                        Instructors: Sarishtha & Bristi
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- TAB 4: POST-REGISTRATION SCREEN (Screenshottable success mode) -->
+    <div id="ticket-success-screen" class="hidden min-h-screen py-10 px-4 flex flex-col items-center justify-center bg-brand-cream/60 animate-fadeIn">
+        
+        <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden">
+            <div class="bg-gradient-to-r from-brand-deepPurple to-brand-purple text-white p-6 text-center relative">
+                <div class="absolute top-2.5 right-2.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-500/30">
+                    Live Pass
+                </div>
+                <p class="text-[10px] uppercase tracking-widest text-brand-coral font-bold">BACHATA SATURDAYS ENTRY BADGE</p>
+                <h2 class="text-2xl font-serif font-extrabold mt-1">6-Week VIP Journey</h2>
+                <p class="text-xs text-stone-300 mt-1">Present this screen/screenshot at the Atmos Studio check-in door.</p>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <!-- Ticket Status Indicator -->
+                <div class="bg-amber-50 border border-amber-200/80 rounded-xl p-3.5 flex gap-3">
+                    <div class="text-xl">⏳</div>
+                    <div>
+                        <h4 class="text-xs font-bold text-amber-800">Verification Pending</h4>
+                        <p class="text-[10px] text-amber-700 mt-0.5 leading-relaxed">
+                            We are reviewing your transaction screenshot proof. Once confirmed, your seat gets fully secured in the roster.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Hologram Barcode Visual -->
+                <div class="bg-stone-50 border border-stone-200 rounded-xl p-4 text-center space-y-2">
+                    <p class="text-[10px] font-bold tracking-widest text-stone-400 uppercase">UNIQUE PASS CODE ID</p>
+                    <p id="ticket-screen-pass-id" class="text-2xl font-mono font-black text-stone-900 tracking-wider bg-white py-2 rounded border border-stone-200/80">
+                        BS-KOR-312562
+                    </p>
+                    <div class="w-full h-10 flex justify-center items-center gap-[2.5px] opacity-75">
+                        <div class="bg-black h-full w-[2px]"></div>
+                        <div class="bg-black h-full w-[1px]"></div>
+                        <div class="bg-black h-full w-[3px]"></div>
+                        <div class="bg-black h-full w-[1px]"></div>
+                        <div class="bg-black h-full w-[2px]"></div>
+                        <div class="bg-black h-full w-[3px]"></div>
+                        <div class="bg-black h-full w-[1px]"></div>
+                        <div class="bg-black h-full w-[2px]"></div>
+                        <div class="bg-black h-full w-[2px]"></div>
+                        <div class="bg-black h-full w-[1px]"></div>
+                        <div class="bg-black h-full w-[4px]"></div>
+                        <div class="bg-black h-full w-[1px]"></div>
+                        <div class="bg-black h-full w-[3px]"></div>
+                        <div class="bg-black h-full w-[2px]"></div>
+                        <div class="bg-black h-full w-[1px]"></div>
+                        <div class="bg-black h-full w-[2px]"></div>
+                        <div class="bg-black h-full w-[3px]"></div>
+                    </div>
+                </div>
+
+                <!-- Meta specifications -->
+                <div class="space-y-3.5 text-xs border-t border-b border-stone-100 py-4">
+                    <div class="flex justify-between items-start">
+                        <span class="text-stone-500 font-semibold text-[11px]">Primary Registrant</span>
+                        <span id="ticket-screen-meta-name" class="font-bold text-stone-900 text-right"> - </span>
+                    </div>
+                    <div id="ticket-screen-meta-partner-row" class="flex justify-between items-start hidden">
+                        <span class="text-stone-500 font-semibold text-[11px]">Partner Name</span>
+                        <span id="ticket-screen-meta-partner-name" class="font-bold text-stone-900 text-right">-</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-stone-500 font-semibold text-[11px]">WhatsApp Contact</span>
+                        <span id="ticket-screen-meta-phone" class="font-mono font-bold text-stone-900">-</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-stone-500 font-semibold text-[11px]">Selected Level</span>
+                        <span id="ticket-screen-meta-level" class="bg-brand-coral text-white text-[10px] px-2 py-0.5 rounded font-bold uppercase">-</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-stone-500 font-semibold text-[11px]">Pricing Plan</span>
+                        <span id="ticket-screen-meta-plan" class="font-bold text-purple-700">-</span>
+                    </div>
+                </div>
+
+                <!-- Action items -->
+                <div class="space-y-2">
+                    <button onclick="window.print()" class="w-full bg-stone-900 hover:bg-stone-800 text-white py-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow active:scale-95">
+                        🖨️ Save PDF or Print Pass
+                    </button>
+                    <button id="ticket-screen-whatsapp-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow active:scale-95">
+                        💬 Send Pass to Organizer
+                    </button>
+                    <button onclick="closeTicketAndReturnToHome()" class="w-full bg-stone-100 hover:bg-stone-200 text-stone-800 py-3 rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5 active:scale-95 border border-stone-200 mt-2">
+                        🔄 Register Another Person / Go Back
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCREENSHOT LIGHTBOX VIEW MODAL (Centered & blurred overlays) -->
+    <div id="receipt-modal" class="fixed inset-0 z-50 bg-black/80 hidden items-center justify-center p-4 backdrop-blur-sm transition-all duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl">
+            <div class="bg-stone-900 text-white p-4 flex justify-between items-center">
+                <h4 class="font-bold text-xs sm:text-sm">Transaction Proof Receipt Image</h4>
+                <button onclick="closeReceiptModal()" class="text-stone-400 hover:text-white text-xl">✕</button>
+            </div>
+            <div class="p-2 bg-stone-950 flex items-center justify-center">
+                <img id="receipt-modal-img" src="" alt="Full Receipt" class="max-h-[70vh] object-contain rounded" />
+            </div>
+            <div class="p-4 bg-stone-100 flex justify-end">
+                <button onclick="closeReceiptModal()" class="px-4 py-2 bg-stone-800 hover:bg-stone-900 text-white text-xs font-bold rounded-lg transition active:scale-95">
+                    Dismiss Review
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOUBLE CHECK CONFIRM MODAL (Meticulous centering alignment) -->
+    <div id="confirm-modal" class="fixed inset-0 z-50 bg-black/60 hidden items-center justify-center p-4 backdrop-blur-sm transition-all duration-300">
+        <div class="bg-white rounded-2xl max-w-sm w-full shadow-2xl border border-stone-200 p-6 space-y-4">
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 bg-rose-100 text-rose-600 flex items-center justify-center rounded-full mx-auto text-xl">
+                    ⚠️
+                </div>
+                <h3 class="font-serif font-black text-lg text-stone-900">Scratch out this record?</h3>
+                <p class="text-xs text-stone-500 leading-relaxed">
+                    This action marks the registration as scratched out. It will subtract from revenue stats but stay in your tables for audit logs.
+                </p>
+            </div>
+
+            <div class="flex gap-2">
+                <button onclick="closeConfirmModal()" class="flex-1 px-4 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-bold rounded-lg transition">
+                    Cancel
+                </button>
+                <button id="confirm-delete-action-btn" class="flex-1 px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-lg transition">
+                    Scratch Record
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DATABASE AND ROUTING ENGINE SCRIPT -->
+    <script>
+        let activeRegistrations = [];
+        let globalSelectedLevel = 'L1';
+        let globalSelectedPlan = 'individual-regular';
+        let globalSelectedGender = 'Lead';
+        let globalSelectedPartnerGender = 'Follow';
+        let activePromoCode = null;
+        let documentToDeleteId = null;
+
+        // Base pricing configuration Matrix
+        const basePricingMatrix = {
+            'individual-regular': { name: 'Individual (Regular)', price: 3500, isCouple: false },
+            'couple-regular': { name: 'Couple (Regular)', price: 6500, isCouple: true },
+            'individual-trial': { name: 'Trial / Drop-in Session', price: 700, isCouple: false }
+        };
+
+        // --- CLIPBOARD WRITING HELPER (FULLY OPTIMIZED FOR ALL iOS SAFARI VERSIONS) ---
+        function copyToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text)
+                    .then(() => showToast('success', 'Copied to Clipboard!', text))
+                    .catch(() => copyToClipboardFallback(text));
+            } else {
+                copyToClipboardFallback(text);
+            }
+        }
+
+        function copyToClipboardFallback(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed"; 
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.width = "2em";
+            textArea.style.height = "2em";
+            textArea.style.padding = "0";
+            textArea.style.border = "none";
+            textArea.style.outline = "none";
+            textArea.style.boxShadow = "none";
+            textArea.style.background = "transparent";
+            document.body.appendChild(textArea);
+            
+            // iOS selection range selection focus support
+            if (navigator.userAgent.match(/ipad|iphone/i)) {
+                const range = document.createRange();
+                range.selectNodeContents(textArea);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                textArea.setSelectionRange(0, 999999);
+            } else {
+                textArea.select();
+            }
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast('success', 'Copied to Clipboard!', text);
+                } else {
+                    showToast('error', 'Clipboard error. Please manually copy credentials.');
+                }
+            } catch (err) {
+                showToast('error', 'Clipboard access restricted.');
+            }
+            document.body.removeChild(textArea);
+        }
+
+        window.addEventListener('load', () => {
+            // Load offline storage if empty
+            if (localStorage.getItem('bachata_saturdays_roster')) {
+                activeRegistrations = JSON.parse(localStorage.getItem('bachata_saturdays_roster'));
+            } else {
+                activeRegistrations = [];
+                localStorage.setItem('bachata_saturdays_roster', JSON.stringify(activeRegistrations));
+            }
+
+            // Restore elements behavior
+            updateFormPricingDisplay();
+
+            // Set up clean copy button clicks
+            document.getElementById('copy-upi-btn').onclick = () => {
+                copyToClipboard('sarishthamajumdar-1@okhdfcbank');
+            };
+            document.getElementById('copy-phone-btn').onclick = () => {
+                copyToClipboard('8377017048');
+            };
+        });
+
+        // --- PHONE NUMBER CLEANER AND VALIDATOR ---
+        function cleanAndValidatePhone(phone) {
+            if (!phone) return null;
+            const cleaned = phone.replace(/[\s\-()]/g, '');
+            const matches = cleaned.match(/^(?:\+91|91|0)?([6-9]\d{9})$/);
+            return matches ? matches[1] : null;
+        }
+
+        function switchTab(tabId) {
+            // Toggle visibility classes
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.add('hidden');
+                panel.classList.remove('block');
+            });
+            document.getElementById(`tab-panel-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-panel-${tabId}`).classList.add('block');
+
+            // Toggle Tab Buttons active styling
+            document.querySelectorAll('[id^="tab-btn-"]').forEach(btn => {
+                btn.className = "flex-1 text-center py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 text-stone-600 hover:text-stone-900 hover:bg-stone-200/20 active:scale-[0.98]";
+            });
+
+            const currentBtn = document.getElementById(`tab-btn-${tabId}`);
+            if (currentBtn) {
+                // Instantly apply the physically raised, tactile pill style
+                currentBtn.className = "flex-1 text-center py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-200 bg-white text-brand-purple border border-stone-200/80 shadow-[0_3px_8px_rgba(0,0,0,0.06),inset_0_-2px_0_rgba(0,0,0,0.05)] active:scale-[0.98]";
+            }
+        }
+
+        // --- FAQ ACCORDION ---
+        function toggleAccordion(idx) {
+            const body = document.getElementById(`accordion-body-${idx}`);
+            const arrow = document.getElementById(`accordion-arrow-${idx}`);
+            
+            if (body.classList.contains('hidden')) {
+                body.classList.remove('hidden');
+                arrow.style.transform = "rotate(180deg)";
+            } else {
+                body.classList.add('hidden');
+                arrow.style.transform = "rotate(0deg)";
+            }
+        }
+
+        function selectLevel(lvl) {
+            globalSelectedLevel = lvl;
+            document.querySelectorAll('[id^="level-card-"]').forEach(card => {
+                card.classList.remove('border-brand-coral', 'bg-brand-cream');
+                card.classList.add('border-stone-200', 'bg-white');
+            });
+            document.querySelectorAll('input[name="level-radio"]').forEach(rad => rad.checked = false);
+            
+            document.getElementById(`level-card-${lvl}`).classList.add('border-brand-coral', 'bg-brand-cream');
+            document.getElementById(`level-radio-${lvl}`).checked = true;
+
+            // Constrain plan elements if Level 4 Performance is active
+            const coupleCard = document.getElementById('plan-card-couple-regular');
+            const trialCard = document.getElementById('plan-card-individual-trial');
+
+            if (lvl === 'L4') {
+                // Instantly force selected plan to Individual Regular (₹3500)
+                if (globalSelectedPlan !== 'individual-regular') {
+                    selectPlan('individual-regular');
+                }
+                // Visual disable trigger for alternative plans
+                coupleCard.classList.add('opacity-45', 'pointer-events-none');
+                trialCard.classList.add('opacity-45', 'pointer-events-none');
+                
+                showToast('success', 'L4 Performance Batch uses Individual Plan only (Offers applicable).');
+            } else {
+                coupleCard.classList.remove('opacity-45', 'pointer-events-none');
+                trialCard.classList.remove('opacity-45', 'pointer-events-none');
+            }
+        }
+
+        function selectPlan(planKey) {
+            globalSelectedPlan = planKey;
+            
+            const cards = [
+                { key: 'individual-regular', id: 'plan-card-individual-regular' },
+                { key: 'couple-regular', id: 'plan-card-couple-regular' },
+                { key: 'individual-trial', id: 'plan-card-individual-trial' }
+            ];
+
+            cards.forEach(card => {
+                const el = document.getElementById(card.id);
+                if (card.key === planKey) {
+                    el.classList.add('border-brand-coral', 'bg-brand-cream/40');
+                    el.classList.remove('border-stone-200', 'bg-white');
+                } else {
+                    el.classList.remove('border-brand-coral', 'bg-brand-cream/40');
+                    el.classList.add('border-stone-200', 'bg-white');
+                }
+            });
+
+            document.querySelectorAll('input[name="plan-radio"]').forEach(rad => rad.checked = false);
+            const radioEl = document.getElementById(`plan-radio-${planKey}`);
+            if (radioEl) radioEl.checked = true;
+
+            // Partner panel visibility trigger
+            const partnerBox = document.getElementById('partner-info-box');
+            if (basePricingMatrix[planKey].isCouple) {
+                partnerBox.classList.remove('hidden');
+            } else {
+                partnerBox.classList.add('hidden');
+            }
+
+            updateFormPricingDisplay();
+            triggerDuplicatePhoneWarning();
+        }
+
+        function selectGender(gender) {
+            globalSelectedGender = gender;
+            const isLead = gender === 'Lead';
+            
+            document.getElementById('gender-lead').className = isLead
+                ? "py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-brand-cream border-brand-coral text-stone-900"
+                : "py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-white border-stone-200 text-stone-600 hover:border-stone-300";
+                
+            document.getElementById('gender-follow').className = !isLead
+                ? "py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-brand-cream border-brand-coral text-stone-900"
+                : "py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-white border-stone-200 text-stone-600 hover:border-stone-300";
+        }
+
+        function selectPartnerGender(gender) {
+            globalSelectedPartnerGender = gender;
+            const isLead = gender === 'Lead';
+            
+            document.getElementById('partner-gender-lead').className = isLead
+                ? "py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-brand-cream border-brand-coral text-stone-900"
+                : "py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-white border-stone-200 text-stone-600 hover:border-stone-300";
+                
+            document.getElementById('partner-gender-follow').className = !isLead
+                ? "py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-brand-cream border-brand-coral text-stone-900"
+                : "py-2.5 rounded-lg border-2 text-xs font-bold text-center transition-all bg-white border-stone-200 text-stone-600 hover:border-stone-300";
+        }
+
+        function getCalculatedPrice(planKey) {
+            const basePrice = basePricingMatrix[planKey].price;
+            if (!activePromoCode) return basePrice;
+
+            // Apply promotional codes
+            if (activePromoCode === 'EB500') {
+                if (planKey === 'individual-regular') return 3000;
+                if (planKey === 'couple-regular') return 5500;
+            }
+            if (activePromoCode === 'SXB1000') {
+                if (planKey === 'individual-regular') return 2500;
+                if (planKey === 'couple-regular') return 5000;
+            }
+            if (activePromoCode === 'REF10') {
+                if (planKey === 'individual-regular') return 3150;
+                if (planKey === 'couple-regular') return 5850;
+            }
+            if (activePromoCode === 'SXBTRIAL') {
+                if (planKey === 'individual-trial') return 600;
+            }
+            return basePrice;
+        }
+
+        function updateFormPricingDisplay() {
+            const indPrice = getCalculatedPrice('individual-regular');
+            const cplPrice = getCalculatedPrice('couple-regular');
+            const trlPrice = getCalculatedPrice('individual-trial');
+
+            document.getElementById('price-val-individual').innerText = `₹${indPrice}`;
+            document.getElementById('price-val-couple').innerText = `₹${cplPrice}`;
+            document.getElementById('price-val-trial').innerText = `₹${trlPrice}`;
+
+            if (activePromoCode) {
+                document.getElementById('strike-val-individual').classList.remove('hidden');
+                document.getElementById('strike-val-couple').classList.remove('hidden');
+                if (activePromoCode === 'SXBTRIAL') {
+                    document.getElementById('strike-val-trial').classList.remove('hidden');
+                } else {
+                    document.getElementById('strike-val-trial').classList.add('hidden');
+                }
+            } else {
+                document.getElementById('strike-val-individual').classList.add('hidden');
+                document.getElementById('strike-val-couple').classList.add('hidden');
+                document.getElementById('strike-val-trial').classList.add('hidden');
+            }
+
+            const activeFinalPrice = getCalculatedPrice(globalSelectedPlan);
+            document.getElementById('bill-plan-title').innerText = basePricingMatrix[globalSelectedPlan].name + (activePromoCode ? ` (${activePromoCode} Applied)` : '');
+            document.getElementById('bill-amount-label').innerText = `₹${activeFinalPrice}`;
+            document.getElementById('bill-instruction-price').innerText = `₹${activeFinalPrice}`;
+        }
+
+        function applyPromoCode() {
+            const code = document.getElementById('promo-input').value.trim().toUpperCase();
+            const msg = document.getElementById('promo-message');
+            
+            if (!code) {
+                showToast('error', 'Please enter a promocode.');
+                return;
+            }
+
+            const validCodes = ['EB500', 'SXB1000', 'REF10', 'SXBTRIAL'];
+            if (validCodes.includes(code)) {
+                activePromoCode = code;
+                msg.className = "text-[10px] font-bold text-emerald-600 mt-1 block";
+                msg.innerText = `✓ Code ${code} successfully applied to pricing matrix!`;
+                
+                document.getElementById('promo-remove-btn').classList.remove('hidden');
+                document.getElementById('promo-apply-btn').classList.add('hidden');
+                document.getElementById('promo-input').disabled = true;
+
+                updateFormPricingDisplay();
+                showToast('success', `Promocode "${code}" activated.`);
+            } else {
+                msg.className = "text-[10px] font-bold text-rose-600 mt-1 block";
+                msg.innerText = "❌ Invalid promo code entered. Try again.";
+                showToast('error', 'Invalid access code.');
+            }
+        }
+
+        function removePromoCode() {
+            activePromoCode = null;
+            const msg = document.getElementById('promo-message');
+            msg.classList.add('hidden');
+            
+            document.getElementById('promo-input').value = "";
+            document.getElementById('promo-input').disabled = false;
+            document.getElementById('promo-remove-btn').classList.add('hidden');
+            document.getElementById('promo-apply-btn').classList.remove('hidden');
+
+            updateFormPricingDisplay();
+            showToast('success', 'Promo code removed.');
+        }
+
+        // Real-time phone warning generator
+        function triggerDuplicatePhoneWarning() {
+            const rawPhone = document.getElementById('field-phone').value;
+            const cleanPhone = cleanAndValidatePhone(rawPhone);
+            const warningEl = document.getElementById('warning-duplicate-phone');
+
+            let phoneMatchFound = false;
+            if (cleanPhone) {
+                phoneMatchFound = activeRegistrations.some(r => r.phone === cleanPhone && !r.deleted);
+            }
+            if (phoneMatchFound) {
+                warningEl.classList.remove('hidden');
+            } else {
+                warningEl.classList.add('hidden');
+            }
+
+            // Check partner phone if visible
+            if (basePricingMatrix[globalSelectedPlan].isCouple) {
+                const rawPartnerPhone = document.getElementById('field-partnerPhone').value;
+                const cleanPartnerPhone = cleanAndValidatePhone(rawPartnerPhone);
+                const partnerWarningEl = document.getElementById('warning-duplicate-partner-phone');
+                
+                let partnerMatchFound = false;
+                if (cleanPartnerPhone) {
+                    partnerMatchFound = activeRegistrations.some(r => r.phone === cleanPartnerPhone && !r.deleted);
+                }
+                if (partnerMatchFound) {
+                    partnerWarningEl.classList.remove('hidden');
+                } else {
+                    partnerWarningEl.classList.add('hidden');
+                }
+            }
+        }
+
+        let compressedScreenshotBase64 = "";
+
+        // --- IMAGE COMPRESSOR & BASE64 PARSER ---
+        function handleImageCompressAndUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const feedback = document.getElementById('screenshot-feedback-label');
+            feedback.innerText = "⏳ Compressing image proof inline...";
+            feedback.className = "text-xs text-amber-500 font-bold";
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const maxDim = 500;
+
+                    if (width > height) {
+                        if (width > maxDim) {
+                            height = Math.round((height * maxDim) / width);
+                            width = maxDim;
+                        }
+                    } else {
+                        if (height > maxDim) {
+                            width = Math.round((width * maxDim) / height);
+                            height = maxDim;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    compressedScreenshotBase64 = canvas.toDataURL('image/jpeg', 0.6);
+                    
+                    // Show preview
+                    document.getElementById('screenshot-preview-container').classList.remove('hidden');
+                    document.getElementById('screenshot-preview-img').src = compressedScreenshotBase64;
+                    
+                    feedback.innerText = "✓ Screenshot processed & ready!";
+                    feedback.className = "text-xs text-emerald-600 font-semibold";
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearScreenshotUpload() {
+            compressedScreenshotBase64 = "";
+            document.getElementById('field-screenshot').value = "";
+            document.getElementById('screenshot-preview-container').classList.add('hidden');
+            document.getElementById('screenshot-preview-img').src = "";
+            
+            const feedback = document.getElementById('screenshot-feedback-label');
+            feedback.innerText = "PNG, JPG formats. Real-time compression active.";
+            feedback.className = "text-xs text-stone-400";
+        }
+
+        function handleRegistrationSubmit(event) {
+            event.preventDefault();
+
+            const errors = [];
+            
+            const fullName = document.getElementById('field-fullName').value.trim();
+            const rawPhone = document.getElementById('field-phone').value;
+            const cleanPhone = cleanAndValidatePhone(rawPhone);
+            const instagram = document.getElementById('field-instagram').value.trim();
+            const termsAccepted = document.getElementById('field-termsAccepted').checked;
+            const utr = document.getElementById('field-utr').value.trim();
+
+            const isCouplePlan = basePricingMatrix[globalSelectedPlan].isCouple;
+            
+            let partnerName = "";
+            let cleanPartnerPhone = "";
+            let partnerInstagram = "";
+
+            // Basic checks
+            if (!fullName) {
+                errors.push("Primary participant name is required.");
+            } else if (fullName.length < 3) {
+                errors.push("Primary name must be at least 3 characters.");
+            }
+
+            if (!rawPhone) {
+                errors.push("WhatsApp phone number is required.");
+            } else if (!cleanPhone) {
+                errors.push("Please provide a valid 10-digit Indian mobile number.");
+            }
+
+            if (isCouplePlan) {
+                partnerName = document.getElementById('field-partnerName').value.trim();
+                const rawPartnerPhone = document.getElementById('field-partnerPhone').value;
+                cleanPartnerPhone = rawPartnerPhone ? cleanAndValidatePhone(rawPartnerPhone) : "";
+                partnerInstagram = document.getElementById('field-partnerInstagram').value.trim();
+
+                if (!partnerName) {
+                    errors.push("Partner full name is required for couple plans.");
+                } else if (partnerName.length < 3) {
+                    errors.push("Partner name must be at least 3 characters.");
+                }
+
+                if (rawPartnerPhone && !cleanPartnerPhone) {
+                    errors.push("Partner phone number format is invalid.");
+                }
+            }
+
+            if (!compressedScreenshotBase64) {
+                errors.push("A screenshot proof of payment is strictly required.");
+            }
+
+            if (!termsAccepted) {
+                errors.push("You must accept the course terms & schedule agreements.");
+            }
+
+            const errPanel = document.getElementById('validation-error-panel');
+            const errList = document.getElementById('error-bullet-list');
+
+            if (errors.length > 0) {
+                errList.innerHTML = "";
+                errors.forEach(err => {
+                    const li = document.createElement('li');
+                    li.innerText = err;
+                    errList.appendChild(li);
+                });
+                errPanel.classList.remove('hidden');
+                errPanel.scrollIntoView({ behavior: 'smooth' });
+                showToast('error', 'Please correct the errors before submitting.');
+                return;
+            }
+
+            errPanel.classList.add('hidden');
+
+            // Save to local storage
+            const ticketCode = `BS-KOR-${Math.floor(100000 + Math.random() * 900000)}`;
+            const finalDue = getCalculatedPrice(globalSelectedPlan);
+
+            const payload = {
+                id: `local-${Date.now()}`,
+                fullName,
+                phone: cleanPhone,
+                gender: globalSelectedGender,
+                instagram,
+                partnerName: isCouplePlan ? partnerName : '',
+                partnerPhone: isCouplePlan ? cleanPartnerPhone : '',
+                partnerGender: isCouplePlan ? globalSelectedPartnerGender : '',
+                partnerInstagram: isCouplePlan ? partnerInstagram : '',
+                level: globalSelectedLevel,
+                plan: globalSelectedPlan,
+                amountPaid: finalDue,
+                screenshot: compressedScreenshotBase64,
+                utr,
+                ticketCode,
+                status: 'Pending Verification',
+                checkedIn: false,
+                timestamp: Date.now(),
+                deleted: false
+            };
+
+            activeRegistrations.unshift(payload);
+            localStorage.setItem('bachata_saturdays_roster', JSON.stringify(activeRegistrations));
+
+            showToast('success', 'Registration completed!', 'Ticket generated.');
+            showTicketScreen(payload);
+        }
+
+        function showTicketScreen(reg) {
+            document.getElementById('ticket-screen-pass-id').innerText = reg.ticketCode;
+            document.getElementById('ticket-screen-meta-name').innerText = reg.fullName;
+            document.getElementById('ticket-screen-meta-phone').innerText = reg.phone;
+            document.getElementById('ticket-screen-meta-level').innerText = reg.level;
+
+            const planDetails = basePricingMatrix[reg.plan];
+            document.getElementById('ticket-screen-meta-plan').innerText = planDetails.name + (activePromoCode ? ` (${activePromoCode})` : '');
+
+            const partnerRow = document.getElementById('ticket-screen-meta-partner-row');
+            const partnerNameEl = document.getElementById('ticket-screen-meta-partner-name');
+            if (planDetails.isCouple && reg.partnerName) {
+                partnerRow.classList.remove('hidden');
+                partnerNameEl.innerText = reg.partnerName;
+            } else {
+                partnerRow.classList.add('hidden');
+            }
+
+            // WhatsApp link trigger
+            document.getElementById('ticket-screen-whatsapp-btn').onclick = () => {
+                const encodedMsg = encodeURIComponent(`Hi! I registered for Bachata Saturdays. Here is my pass code: ${reg.ticketCode}. Please verify my payment.`);
+                window.open(`https://wa.me/916360843832?text=${encodedMsg}`, '_blank');
+            };
+
+            document.getElementById('homepage-view').classList.add('hidden');
+            document.getElementById('ticket-success-screen').classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeTicketAndReturnToHome() {
+            document.getElementById('ticket-success-screen').classList.add('hidden');
+            document.getElementById('homepage-view').classList.remove('hidden');
+
+            document.getElementById('rsvp-form').reset();
+            clearScreenshotUpload();
+            if (activePromoCode) removePromoCode();
+
+            switchTab('register');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- ADMIN AUTH GATING ---
+        function handleAdminAuth(e) {
+            e.preventDefault();
+            const val = document.getElementById('admin-password-input').value;
+            const err = document.getElementById('admin-auth-error');
+
+            if (val === 'sxbjunebatch12') {
+                err.classList.add('hidden');
+                document.getElementById('admin-auth-gate').classList.add('hidden');
+                document.getElementById('admin-dashboard-content').classList.remove('hidden');
+                showToast('success', 'Admin verified.');
+                renderRosterTable();
+            } else {
+                err.innerText = "❌ Incorrect password. Try sxbjunebatch12.";
+                err.classList.remove('hidden');
+                showToast('error', 'Unauthorized access rejected.');
+            }
+        }
+
+        function lockAdminSession() {
+            document.getElementById('admin-password-input').value = "";
+            document.getElementById('admin-auth-gate').classList.remove('hidden');
+            document.getElementById('admin-dashboard-content').classList.add('hidden');
+            showToast('success', 'Admin desk locked.');
+        }
+
+        // --- ADMIN PORTAL CONTROLS ---
+        function renderRosterTable() {
+            const body = document.getElementById('roster-table-body');
+            body.innerHTML = "";
+
+            const searchQuery = document.getElementById('admin-search-input').value.toLowerCase();
+            const levelVal = document.getElementById('filter-level').value;
+            const statusVal = document.getElementById('filter-status').value;
+            const showOnlyDup = document.getElementById('filter-show-dup').checked;
+
+            // Recalculate duplicate phone numbers list
+            const phoneCounters = {};
+            activeRegistrations.forEach(r => {
+                if (r.deleted) return;
+                if (r.phone) phoneCounters[r.phone] = (phoneCounters[r.phone] || 0) + 1;
+                if (r.partnerPhone) phoneCounters[r.partnerPhone] = (phoneCounters[r.partnerPhone] || 0) + 1;
+            });
+            const dupList = Object.keys(phoneCounters).filter(p => phoneCounters[p] > 1);
+
+            // Update Dup count badge
+            const dupBadge = document.getElementById('stats-dup-bubble');
+            if (dupList.length > 0) {
+                dupBadge.innerText = `${dupList.length} potential duplicates`;
+                dupBadge.classList.remove('hidden');
+            } else {
+                dupBadge.classList.add('hidden');
+            }
+
+            // Stats computations
+            let verifiedRevenue = 0;
+            let projectedRevenue = 0;
+            let totalEnrolledCount = 0;
+            let mCount = 0;
+            let fCount = 0;
+            let l1 = 0, l2 = 0, l3 = 0, l4 = 0, trialCount = 0;
+
+            activeRegistrations.forEach(reg => {
+                if (reg.deleted) return;
+
+                const isCouplePlan = reg.plan && basePricingMatrix[reg.plan] && basePricingMatrix[reg.plan].isCouple;
+                totalEnrolledCount += isCouplePlan ? 2 : 1;
+
+                const amt = Number(reg.amountPaid) || 0;
+                projectedRevenue += amt;
+
+                if (reg.status === 'Verified') {
+                    verifiedRevenue += amt;
+                }
+
+                // Genders (Only count partner if Couple plan is selected)
+                if (reg.gender === 'Lead') mCount++; else fCount++;
+                if (isCouplePlan && reg.partnerGender) {
+                    if (reg.partnerGender === 'Lead') mCount++; else fCount++;
+                }
+
+                // Levels Split
+                if (reg.plan === 'individual-trial') {
+                    trialCount++;
+                } else {
+                    if (reg.level === 'L1') l1++;
+                    if (reg.level === 'L2') l2++;
+                    if (reg.level === 'L3') l3++;
+                    if (reg.level === 'L4') l4++;
+                }
+            });
+
+            // Set stats values
+            document.getElementById('stats-total').innerText = totalEnrolledCount;
+            document.getElementById('stats-revenue').innerText = `₹${verifiedRevenue}`;
+            document.getElementById('stats-projected').innerText = `₹${projectedRevenue}`;
+            document.getElementById('stats-genders').innerText = `${mCount}L / ${fCount}F`;
+            document.getElementById('stats-l1').innerText = l1;
+            document.getElementById('stats-l2').innerText = l2;
+            document.getElementById('stats-l3').innerText = l3;
+            document.getElementById('stats-l4').innerText = l4;
+            document.getElementById('stats-trial').innerText = trialCount;
+
+            // Filtration loops
+            const matchedRows = activeRegistrations.filter(r => {
+                if (levelVal !== 'all' && r.level !== levelVal) return false;
+                if (statusVal !== 'all' && r.status !== statusVal) return false;
+                
+                if (showOnlyDup) {
+                    const isRowDup = dupList.includes(r.phone) || (r.partnerPhone && dupList.includes(r.partnerPhone));
+                    if (!isRowDup) return false;
+                }
+
+                if (searchQuery) {
+                    const nameMatch = r.fullName.toLowerCase().includes(searchQuery) || (r.partnerName && r.partnerName.toLowerCase().includes(searchQuery));
+                    const phoneMatch = r.phone.includes(searchQuery) || (r.partnerPhone && r.partnerPhone.includes(searchQuery));
+                    const ticketMatch = r.ticketCode && r.ticketCode.toLowerCase().includes(searchQuery);
+                    const utrMatch = r.utr && r.utr.toLowerCase().includes(searchQuery);
+                    return nameMatch || phoneMatch || ticketMatch || utrMatch;
+                }
+
+                return true;
+            });
+
+            // Populate rows
+            matchedRows.forEach(reg => {
+                const tr = document.createElement('tr');
+                const isDup = !reg.deleted && (dupList.includes(reg.phone) || (reg.partnerPhone && dupList.includes(reg.partnerPhone)));
+                
+                if (reg.deleted) {
+                    tr.className = "bg-stone-100 opacity-60 line-through text-stone-400 border-b border-stone-200";
+                } else if (isDup) {
+                    tr.className = "bg-rose-50/60 border-l-4 border-rose-500 hover:bg-rose-50 transition border-b border-stone-200";
+                } else {
+                    tr.className = "hover:bg-stone-50 transition border-b border-stone-200";
+                }
+
+                const genderBadgePrimary = reg.gender === 'Lead' ? 'L' : 'F';
+                const genderBadgePartner = reg.partnerGender === 'Lead' ? 'L' : 'F';
+
+                tr.innerHTML = `
+                    <td class="px-4 py-3 space-y-1">
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-bold text-stone-900">${reg.fullName}</span>
+                            <span class="text-[9px] bg-stone-200 text-stone-700 px-1 py-0.5 rounded font-black">${genderBadgePrimary}</span>
+                            ${reg.deleted ? `<span class="bg-stone-300 text-stone-800 text-[8px] font-bold px-1 py-0.5 rounded uppercase">SCRATCHED</span>` : ''}
+                        </div>
+                        ${reg.partnerName ? `
+                            <div class="text-[10px] text-stone-500 font-semibold">
+                                Partner: ${reg.partnerName} 
+                                <span class="text-[9px] bg-stone-200 text-stone-700 px-1 py-0.5 rounded font-black">${genderBadgePartner}</span>
+                            </div>
+                        ` : ''}
+                        <div class="text-[10px] text-stone-400 font-mono">
+                            📞 ${reg.phone} ${reg.partnerPhone ? ` / ${reg.partnerPhone}` : ''}
+                        </div>
+                        <div class="text-[10px] text-brand-coral font-bold font-mono">
+                            ${reg.instagram ? `Insta: ${reg.instagram}` : ''}
+                        </div>
+                    </td>
+                    <td class="px-4 py-3 text-xs space-y-1">
+                        <div class="flex items-center gap-1">
+                            <span class="bg-brand-coral text-white text-[9px] px-1.5 py-0.5 rounded font-bold uppercase">${reg.level}</span>
+                            <span class="font-mono font-bold text-brand-purple">₹${reg.amountPaid}</span>
+                        </div>
+                        <div class="text-[10px] text-stone-500 font-medium">Plan: ${reg.plan}</div>
+                        <div class="text-[9px] text-stone-400 font-mono">${reg.ticketCode}</div>
+                    </td>
+                    <td class="px-4 py-3 text-xs space-y-1">
+                        ${reg.screenshot ? `
+                            <button onclick="openReceiptModal('${reg.screenshot}')" class="flex items-center gap-1 text-brand-coral hover:underline font-bold text-[10px]">
+                                🖼️ View Receipt Proof
+                            </button>
+                        ` : '<span class="text-rose-500 font-bold">No receipt</span>'}
+                        
+                        ${reg.utr ? `<div class="text-[9px] font-mono bg-stone-100 p-0.5 rounded text-stone-700 w-fit">UTR: ${reg.utr}</div>` : ''}
+                    </td>
+                    <td class="px-4 py-3 space-y-2">
+                        <button 
+                            onclick="toggleVerification('${reg.id}')"
+                            ${reg.deleted ? 'disabled' : ''}
+                            class="w-full text-center py-1 rounded text-[10px] font-bold uppercase transition ${
+                                reg.deleted ? 'bg-stone-100 text-stone-400 cursor-not-allowed border-stone-200' :
+                                reg.status === 'Verified' ? 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200' : 'bg-amber-100 text-amber-800 hover:bg-amber-200'
+                            }"
+                        >
+                            ${reg.status}
+                        </button>
+
+                        <button 
+                            onclick="toggleCheckIn('${reg.id}')"
+                            ${reg.deleted ? 'disabled' : ''}
+                            class="w-full text-center py-1 rounded text-[10px] font-bold uppercase transition ${
+                                reg.deleted ? 'bg-stone-100 text-stone-400 cursor-not-allowed border-stone-200' :
+                                reg.checkedIn ? 'bg-purple-100 text-purple-800 hover:bg-purple-200' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                            }"
+                        >
+                            ${reg.checkedIn ? 'Checked In' : 'Mark Present'}
+                        </button>
+                    </td>
+                    <td class="px-4 py-3 text-center">
+                        ${reg.deleted ? `
+                            <button onclick="restoreRecord('${reg.id}')" class="px-2 py-1 text-[9px] bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300 font-bold rounded transition">
+                                Restore
+                            </button>
+                        ` : `
+                            <button onclick="openConfirmDeleteModal('${reg.id}')" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition" title="Delete record">
+                                🗑️
+                            </button>
+                        `}
+                    </td>
+                `;
+
+                body.appendChild(tr);
+            });
+        }
+
+        function toggleVerification(id) {
+            const idx = activeRegistrations.findIndex(r => r.id === id);
+            if (idx === -1) return;
+
+            const cur = activeRegistrations[idx].status;
+            activeRegistrations[idx].status = cur === 'Verified' ? 'Pending Verification' : 'Verified';
+            
+            localStorage.setItem('bachata_saturdays_roster', JSON.stringify(activeRegistrations));
+            showToast('success', 'Verification status updated.');
+            renderRosterTable();
+        }
+
+        function toggleCheckIn(id) {
+            const idx = activeRegistrations.findIndex(r => r.id === id);
+            if (idx === -1) return;
+
+            const cur = activeRegistrations[idx].checkedIn;
+            activeRegistrations[idx].checkedIn = !cur;
+
+            localStorage.setItem('bachata_saturdays_roster', JSON.stringify(activeRegistrations));
+            showToast('success', 'Door check-in updated.');
+            renderRosterTable();
+        }
+
+        function openConfirmDeleteModal(id) {
+            documentToDeleteId = id;
+            const modal = document.getElementById('confirm-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeConfirmModal() {
+            documentToDeleteId = null;
+            const modal = document.getElementById('confirm-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Soft deletion
+        document.getElementById('confirm-delete-action-btn').onclick = function() {
+            if (!documentToDeleteId) return;
+
+            const idx = activeRegistrations.findIndex(r => r.id === documentToDeleteId);
+            if (idx !== -1) {
+                activeRegistrations[idx].deleted = true;
+                localStorage.setItem('bachata_saturdays_roster', JSON.stringify(activeRegistrations));
+                showToast('success', 'Registration marked as scratched.');
+                renderRosterTable();
+            }
+            closeConfirmModal();
+        };
+
+        function restoreRecord(id) {
+            const idx = activeRegistrations.findIndex(r => r.id === id);
+            if (idx !== -1) {
+                activeRegistrations[idx].deleted = false;
+                localStorage.setItem('bachata_saturdays_roster', JSON.stringify(activeRegistrations));
+                showToast('success', 'Registration successfully restored.');
+                renderRosterTable();
+            }
+        }
+
+        // CSV Export module
+        function exportToCSV() {
+            if (activeRegistrations.length === 0) {
+                showToast('error', 'No registration logs available to export.');
+                return;
+            }
+
+            const headers = [
+                'Ticket Code', 'Primary Name', 'Gender', 'Primary Phone', 'Instagram',
+                'Partner Name', 'Partner Gender', 'Partner Phone', 'Partner Instagram', 
+                'Level Code', 'Plan Type', 'Amount Paid', 'UTR/Txn ID', 'Verification Status', 'Checked In', 'Deleted'
+            ];
+
+            const rows = activeRegistrations.map(r => [
+                r.ticketCode || '',
+                `"${r.fullName || ''}"`,
+                r.gender || '',
+                r.phone || '',
+                r.instagram || '',
+                `"${r.partnerName || ''}"`,
+                r.partnerGender || '',
+                r.partnerPhone || '',
+                r.partnerInstagram || '',
+                r.level || '',
+                r.plan || '',
+                r.amountPaid || '',
+                r.utr || '',
+                r.status || '',
+                r.checkedIn ? 'Yes' : 'No',
+                r.deleted ? 'Scratched' : 'Active'
+            ]);
+
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + [headers.join(','), ...rows.map(e => e.join(","))].join("\n");
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `BachataSaturdays_Roster_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast('success', 'Excel CSV exported successfully.');
+        }
+
+        // Screenshot modal handlers
+        function openReceiptModal(src) {
+            const img = document.getElementById('receipt-modal-img');
+            img.src = src;
+            const modal = document.getElementById('receipt-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeReceiptModal() {
+            const modal = document.getElementById('receipt-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.getElementById('receipt-modal-img').src = "";
+        }
+
+        // Custom Toast system
+        function showToast(type, title, desc = "") {
+            const banner = document.getElementById('toast-banner');
+            const iconSuccess = document.getElementById('toast-icon-success');
+            const iconError = document.getElementById('toast-icon-error');
+            const titleEl = document.getElementById('toast-title');
+            const descEl = document.getElementById('toast-desc');
+
+            titleEl.innerText = title;
+            descEl.innerText = desc;
+
+            if (type === 'success') {
+                iconSuccess.classList.remove('hidden');
+                iconError.classList.add('hidden');
+            } else {
+                iconError.classList.remove('hidden');
+                iconSuccess.classList.add('hidden');
+            }
+
+            banner.classList.remove('hidden');
+            banner.classList.add('flex');
+
+            setTimeout(hideToast, 5000);
+        }
+
+        function hideToast() {
+            const banner = document.getElementById('toast-banner');
+            banner.classList.add('hidden');
+            banner.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
