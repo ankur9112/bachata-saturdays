@@ -998,8 +998,13 @@
               📊 Administrative Dashboard
             </h2>
             <p class="text-xs text-stone-500 mt-1 font-medium">Live data streams securely synchronized with Cloud Firestore.</p>
+            <!-- Storage mode indicator: shown/hidden via JS after auth resolves -->
+            <div id="storage-mode-badge" class="hidden mt-2 inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1 rounded-full border">
+              <span id="storage-mode-dot" class="w-2 h-2 rounded-full"></span>
+              <span id="storage-mode-label">Cloud Active</span>
+            </div>
           </div>
-          
+
           <div class="flex flex-wrap gap-2 font-bold">
             <button id="export-csv-btn" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs transition flex items-center gap-1.5">
               📥 Export to CSV (Excel)
@@ -1228,6 +1233,43 @@
     const db = getFirestore(app);
     const appId = typeof __app_id !== 'undefined' ? __app_id : 'bachata-saturdays-course';
 
+    // --- FAIL-SAFE STORAGE DETECTION ---
+    const isFirebaseConfigured = !!(firebaseConfig.apiKey && firebaseConfig.apiKey.trim().length > 10);
+    let useLocalStorageFallback = !isFirebaseConfigured;
+    const LS_KEY = `bachata_regs_${appId}`;
+
+    // LocalStorage CRUD helpers (functions they reference are resolved at call-time, not definition-time)
+    const lsGetAll = () => {
+      try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); }
+      catch { return []; }
+    };
+
+    const lsSave = (payload) => {
+      const stored = lsGetAll();
+      const id = 'ls_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      stored.unshift({ id, ...payload });
+      localStorage.setItem(LS_KEY, JSON.stringify(stored));
+      return id;
+    };
+
+    const lsUpdate = (id, updates) => {
+      const stored = lsGetAll();
+      const idx = stored.findIndex(r => r.id === id);
+      if (idx !== -1) {
+        stored[idx] = { ...stored[idx], ...updates };
+        localStorage.setItem(LS_KEY, JSON.stringify(stored));
+      }
+    };
+
+    const syncFromLocalStorage = () => {
+      registrations = lsGetAll().sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+      document.getElementById('admin-table-loading').classList.add('hidden');
+      checkPhoneDuplicate('input-phone', 'phone-warning');
+      checkPhoneDuplicate('input-partnerPhone', 'partner-phone-warning');
+      updateStats();
+      renderAdminTable();
+    };
+
     // --- STATE MANAGEMENT VARS ---
     let user = null;
     let registrations = [];
@@ -1282,6 +1324,11 @@
 
     // --- AUTH ACTIONS ---
     const initAuthentication = async () => {
+      if (!isFirebaseConfigured) {
+        useLocalStorageFallback = true;
+        // Deferred: syncFromLocalStorage() called at end of script after all fns are defined
+        return;
+      }
       try {
         if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
           await signInWithCustomToken(auth, __initial_auth_token);
@@ -1290,14 +1337,16 @@
         }
       } catch (err) {
         console.error("Authentication init failed: ", err);
-        showToast('error', 'Authentication offline. Operating in fallback state.');
+        useLocalStorageFallback = true;
+        syncFromLocalStorage(); // async context — all fns are defined by now
+        showToast('error', 'Cloud sync unavailable. Running in local storage fallback mode.');
       }
     };
     initAuthentication();
 
     onAuthStateChanged(auth, (usr) => {
       user = usr;
-      if (usr) {
+      if (usr && !useLocalStorageFallback) {
         startSyncingRegistrations();
       }
     });
@@ -1321,7 +1370,9 @@
         renderAdminTable();
       }, (err) => {
         console.error("Firestore listener error: ", err);
-        showToast('error', 'Database sync issue. Working in offline mode.');
+        useLocalStorageFallback = true;
+        syncFromLocalStorage();
+        showToast('error', 'Cloud sync failed. Switched to local storage fallback mode.');
       });
     };
 
@@ -1663,7 +1714,7 @@
       document.getElementById('submit-rsvp-btn').disabled = true;
 
       try {
-        if (!user) {
+        if (!useLocalStorageFallback && !user) {
           throw new Error('Database connection is offline. Please wait and try again.');
         }
 
@@ -1692,8 +1743,13 @@
           deleted: false
         };
 
-        const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'registrations');
-        await addDoc(collectionRef, payload);
+        if (useLocalStorageFallback) {
+          lsSave(payload);
+          syncFromLocalStorage();
+        } else {
+          const collectionRef = collection(db, 'artifacts', appId, 'public', 'data', 'registrations');
+          await addDoc(collectionRef, payload);
+        }
 
         document.getElementById('ticket-pass-code').innerText = ticketCode;
         document.getElementById('ticket-primary-name').innerText = `${fullName} (${gender})`;
@@ -1745,6 +1801,22 @@
     };
 
     // --- ORGANIZER PORTAL CONTROLS ---
+    const refreshStorageModeBadge = () => {
+      const badge = document.getElementById('storage-mode-badge');
+      const dot = document.getElementById('storage-mode-dot');
+      const label = document.getElementById('storage-mode-label');
+      badge.classList.remove('hidden');
+      if (useLocalStorageFallback) {
+        badge.className = 'mt-2 inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1 rounded-full border bg-amber-50 border-amber-300 text-amber-800';
+        dot.className = 'w-2 h-2 rounded-full bg-amber-500';
+        label.textContent = 'Local Storage Mode — data stored on this device only';
+      } else {
+        badge.className = 'mt-2 inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1 rounded-full border bg-emerald-50 border-emerald-300 text-emerald-800';
+        dot.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-ping';
+        label.textContent = 'Firebase Cloud — real-time sync active';
+      }
+    };
+
     document.getElementById('admin-login-form').onsubmit = (e) => {
       e.preventDefault();
       const pw = document.getElementById('admin-password-input').value;
@@ -1754,6 +1826,7 @@
         document.getElementById('admin-dashboard-box').classList.remove('hidden');
         document.getElementById('admin-password-input').value = "";
         document.getElementById('admin-login-error').classList.add('hidden');
+        refreshStorageModeBadge();
         showToast('success', 'Admin session initialized.');
       } else {
         document.getElementById('admin-login-error').classList.remove('hidden');
@@ -1938,8 +2011,13 @@
           const id = b.getAttribute('data-id');
           const current = b.getAttribute('data-status');
           const next = current === 'Verified' ? 'Pending Verification' : 'Verified';
-          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', id);
-          await updateDoc(docRef, { status: next });
+          if (useLocalStorageFallback) {
+            lsUpdate(id, { status: next });
+            syncFromLocalStorage();
+          } else {
+            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', id);
+            await updateDoc(docRef, { status: next });
+          }
           showToast('success', 'Verification status updated.');
         };
       });
@@ -1948,8 +2026,13 @@
         b.onclick = async () => {
           const id = b.getAttribute('data-id');
           const current = b.getAttribute('data-checked') === 'true';
-          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', id);
-          await updateDoc(docRef, { checkedIn: !current });
+          if (useLocalStorageFallback) {
+            lsUpdate(id, { checkedIn: !current });
+            syncFromLocalStorage();
+          } else {
+            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', id);
+            await updateDoc(docRef, { checkedIn: !current });
+          }
           showToast('success', 'Attendance tracking synced.');
         };
       });
@@ -1964,8 +2047,13 @@
       document.querySelectorAll('.restore-btn').forEach(b => {
         b.onclick = async () => {
           const id = b.getAttribute('data-id');
-          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', id);
-          await updateDoc(docRef, { deleted: false });
+          if (useLocalStorageFallback) {
+            lsUpdate(id, { deleted: false });
+            syncFromLocalStorage();
+          } else {
+            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', id);
+            await updateDoc(docRef, { deleted: false });
+          }
           showToast('success', 'Registration restored successfully!');
         };
       });
@@ -1999,8 +2087,13 @@
 
     document.getElementById('confirm-delete-btn').onclick = async () => {
       if (docToScratch) {
-        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', docToScratch);
-        await updateDoc(docRef, { deleted: true });
+        if (useLocalStorageFallback) {
+          lsUpdate(docToScratch, { deleted: true });
+          syncFromLocalStorage();
+        } else {
+          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'registrations', docToScratch);
+          await updateDoc(docRef, { deleted: true });
+        }
         showToast('success', 'Enrollment soft-deleted (scratched from active sheets).');
         document.getElementById('delete-modal').classList.add('hidden');
         docToScratch = null;
@@ -2064,6 +2157,11 @@
         window.open(`https://wa.me/91${cleanOrganizer}?text=Hello! I completed registration for Bachata Saturdays. Here is my reference ticket code: ${currentTicket.ticketCode}. Kindly verify my booking.`, '_blank');
       }
     };
+
+    // --- BOOTSTRAP: deferred LocalStorage init (runs after all fns are defined) ---
+    if (useLocalStorageFallback) {
+      syncFromLocalStorage();
+    }
   </script>
 </body>
 </html>
